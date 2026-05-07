@@ -85,8 +85,8 @@ table acumulado_hasta_abril
 												SUM('consulta_base'[PPTO 26 Aprobado MO]),
 												FILTER(
 													'consulta_base',
-													VAR EsBancoRipleyKyndryl =
-														LOWER(TRIM(COALESCE('consulta_base'[Segmento ], ""))) = "banco ripley"
+													VAR EsRetailChileKyndryl =
+														LOWER(TRIM(COALESCE('consulta_base'[Segmento ], ""))) = "retail chile"
 															&& CONTAINSSTRING(
 																LOWER(COALESCE('consulta_base'[Proveedor], "")),
 																"kyndryl"
@@ -98,12 +98,12 @@ table acumulado_hasta_abril
 																CategoriaActual,
 																"Capex",
 																	LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "capex"
-																		&& NOT EsBancoRipleyKyndryl,
+																		&& NOT EsRetailChileKyndryl,
 																"Opex",
 																	LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "opex"
-																		&& NOT EsBancoRipleyKyndryl,
+																		&& NOT EsRetailChileKyndryl,
 																"Eccsa",
-																	EsBancoRipleyKyndryl,
+																	EsRetailChileKyndryl,
 																FALSE()
 															)
 												)
@@ -115,8 +115,8 @@ table acumulado_hasta_abril
 												SUM('consulta_base'[2026 REAL MO]),
 												FILTER(
 													'consulta_base',
-													VAR EsBancoRipleyKyndryl =
-														LOWER(TRIM(COALESCE('consulta_base'[Segmento ], ""))) = "banco ripley"
+													VAR EsRetailChileKyndryl =
+														LOWER(TRIM(COALESCE('consulta_base'[Segmento ], ""))) = "retail chile"
 															&& CONTAINSSTRING(
 																LOWER(COALESCE('consulta_base'[Proveedor], "")),
 																"kyndryl"
@@ -128,12 +128,12 @@ table acumulado_hasta_abril
 																CategoriaActual,
 																"Capex",
 																	LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "capex"
-																		&& NOT EsBancoRipleyKyndryl,
+																		&& NOT EsRetailChileKyndryl,
 																"Opex",
 																	LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "opex"
-																		&& NOT EsBancoRipleyKyndryl,
+																		&& NOT EsRetailChileKyndryl,
 																"Eccsa",
-																	EsBancoRipleyKyndryl,
+																	EsRetailChileKyndryl,
 																FALSE()
 															)
 												)

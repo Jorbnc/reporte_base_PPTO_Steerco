@@ -61,7 +61,7 @@ table acumulado_abril_financiero_CL
 													"Financiero",
 														SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"},
 													"Eccsa",
-														SegmentoNormalizado = "banco ripley"
+														SegmentoNormalizado = "retail chile"
 															&& CONTAINSSTRING(LOWER(COALESCE('consulta_base'[Proveedor], "")), "kyndryl"),
 													FALSE()
 												)
@@ -84,7 +84,7 @@ table acumulado_abril_financiero_CL
 													"Financiero",
 														SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"},
 													"Eccsa",
-														SegmentoNormalizado = "banco ripley"
+														SegmentoNormalizado = "retail chile"
 															&& CONTAINSSTRING(LOWER(COALESCE('consulta_base'[Proveedor], "")), "kyndryl"),
 													FALSE()
 												)
