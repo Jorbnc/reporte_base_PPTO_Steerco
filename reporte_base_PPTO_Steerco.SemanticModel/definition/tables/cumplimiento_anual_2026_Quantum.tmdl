@@ -57,7 +57,7 @@ table cumplimiento_anual_2026_Quantum
 									TRUE(),
 									SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}, "Financiero",
 									SegmentoNormalizado = "retail chile"
-										&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
+										&& CONTAINSSTRING(ProveedorNormalizado, "kyndryl")
 										&& TipoGastoNormalizado IN {"capex", "opex"}, "Eccsa",
 									BLANK()
 								),

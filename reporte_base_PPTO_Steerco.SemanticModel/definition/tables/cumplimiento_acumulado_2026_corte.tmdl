@@ -61,7 +61,7 @@ table cumplimiento_acumulado_2026_corte
 								SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
 							VAR EsEccsa =
 								SegmentoNormalizado = "retail chile"
-									&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
+									&& CONTAINSSTRING(ProveedorNormalizado, "kyndryl")
 							RETURN
 								SWITCH(
 									TRUE(),

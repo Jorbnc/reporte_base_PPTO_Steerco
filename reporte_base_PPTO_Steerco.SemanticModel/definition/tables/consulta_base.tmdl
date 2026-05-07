@@ -17,7 +17,7 @@ table consulta_base
 							SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
 						VAR EsEccsa =
 							SegmentoNormalizado = "retail chile"
-								&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
+								&& CONTAINSSTRING(ProveedorNormalizado, "kyndryl")
 						RETURN
 							YEAR('consulta_base'[Mes/ Año]) = 2026
 								&& 'consulta_base'[Mes/ Año] <= FechaCorte
@@ -53,7 +53,7 @@ table consulta_base
 							SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
 						VAR EsEccsa =
 							SegmentoNormalizado = "retail chile"
-								&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
+								&& CONTAINSSTRING(ProveedorNormalizado, "kyndryl")
 						RETURN
 							YEAR('consulta_base'[Mes/ Año]) = 2026
 								&& 'consulta_base'[Mes/ Año] <= FechaCorte
