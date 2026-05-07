@@ -14,7 +14,6 @@ annotation PBI_ProTooling = ["DevMode"]
 
 ref table consulta_base
 ref table parametros_corte
-ref table cumplimiento_acumulado_2026_hasta_corte
 ref table cumplimiento_acumulado_2026_corte
 ref table cumplimiento_acumulado_2026_corte_CL
 ref table cumplimiento_acumulado_2026_corte_PE

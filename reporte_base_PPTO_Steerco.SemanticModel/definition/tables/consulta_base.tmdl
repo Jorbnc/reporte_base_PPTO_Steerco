@@ -2,53 +2,34 @@ table consulta_base
 	lineageTag: 532c6af5-c767-40ce-bce4-f0005aa52559
 
 	measure 'PPTO 2026 Base Acum' =
-			VAR MesOrden = SELECTEDVALUE('cumplimiento_acumulado_2026_hasta_corte'[Mes Orden])
-			VAR FechaCorte =
-				IF(
-					NOT ISBLANK(MesOrden),
-					EOMONTH(DATE(2026, MesOrden, 1), 0)
-				)
+			VAR MesCorteConfig = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
+			VAR MesCorteGlobal = MIN(12, MAX(1, MesCorteConfig))
+			VAR FechaCorte = EOMONTH(DATE(2026, MesCorteGlobal, 1), 0)
 			RETURN
-				IF(
-					ISBLANK(MesOrden),
-					BLANK(),
-					CALCULATE(
-						DIVIDE(SUM('consulta_base'[PPTO 26 Aprobado CLP]), 1000000000),
-						FILTER(
-							ALL('consulta_base'),
-							VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
-							VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
-							VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
-							VAR EsBanco =
-								SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
-							VAR EsEccsa =
-								SegmentoNormalizado = "retail chile"
-									&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
-							RETURN
-								YEAR('consulta_base'[Mes/ Año]) = 2026
-									&& 'consulta_base'[Mes/ Año] <= FechaCorte
-									&& TipoGastoNormalizado IN {"capex", "opex"}
-									&& (EsBanco || EsEccsa)
-						)
+				CALCULATE(
+					DIVIDE(SUM('consulta_base'[PPTO 26 Aprobado CLP]), 1000000000),
+					FILTER(
+						ALL('consulta_base'),
+						VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+						VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
+						VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+						VAR EsBanco =
+							SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
+						VAR EsEccsa =
+							SegmentoNormalizado = "retail chile"
+								&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
+						RETURN
+							YEAR('consulta_base'[Mes/ Año]) = 2026
+								&& 'consulta_base'[Mes/ Año] <= FechaCorte
+								&& TipoGastoNormalizado IN {"capex", "opex"}
+								&& (EsBanco || EsEccsa)
 					)
 				)
 		formatString: 0.0
 		lineageTag: 4ab693b3-ade1-43db-b2b3-f4493d8afe13
 
 	measure 'PPTO 2026 Tabla Acum' =
-			VAR MesOrden = SELECTEDVALUE('cumplimiento_acumulado_2026_hasta_corte'[Mes Orden])
-			RETURN
-				IF(
-					ISBLANK(MesOrden),
-					BLANK(),
-					CALCULATE(
-						SUM('cumplimiento_acumulado_2026_hasta_corte'[PPTO 2026]),
-						FILTER(
-							ALL('cumplimiento_acumulado_2026_hasta_corte'),
-							'cumplimiento_acumulado_2026_hasta_corte'[Mes Orden] = MesOrden
-						)
-					)
-				)
+			SUM('cumplimiento_acumulado_2026_corte'[PPTO 2026])
 		formatString: 0.0
 		lineageTag: e826866a-8c68-4929-8e28-80b82d4630a4
 
@@ -57,53 +38,34 @@ table consulta_base
 		lineageTag: d8bb56aa-e52a-4584-bf5c-d10874544861
 
 	measure 'REAL 2026 Base Acum' =
-			VAR MesOrden = SELECTEDVALUE('cumplimiento_acumulado_2026_hasta_corte'[Mes Orden])
-			VAR FechaCorte =
-				IF(
-					NOT ISBLANK(MesOrden),
-					EOMONTH(DATE(2026, MesOrden, 1), 0)
-				)
+			VAR MesCorteConfig = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
+			VAR MesCorteGlobal = MIN(12, MAX(1, MesCorteConfig))
+			VAR FechaCorte = EOMONTH(DATE(2026, MesCorteGlobal, 1), 0)
 			RETURN
-				IF(
-					ISBLANK(MesOrden),
-					BLANK(),
-					CALCULATE(
-						DIVIDE(SUM('consulta_base'[2026 REAL CLP]), 1000000000),
-						FILTER(
-							ALL('consulta_base'),
-							VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
-							VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
-							VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
-							VAR EsBanco =
-								SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
-							VAR EsEccsa =
-								SegmentoNormalizado = "retail chile"
-									&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
-							RETURN
-								YEAR('consulta_base'[Mes/ Año]) = 2026
-									&& 'consulta_base'[Mes/ Año] <= FechaCorte
-									&& TipoGastoNormalizado IN {"capex", "opex"}
-									&& (EsBanco || EsEccsa)
-						)
+				CALCULATE(
+					DIVIDE(SUM('consulta_base'[2026 REAL CLP]), 1000000000),
+					FILTER(
+						ALL('consulta_base'),
+						VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+						VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
+						VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+						VAR EsBanco =
+							SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
+						VAR EsEccsa =
+							SegmentoNormalizado = "retail chile"
+								&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
+						RETURN
+							YEAR('consulta_base'[Mes/ Año]) = 2026
+								&& 'consulta_base'[Mes/ Año] <= FechaCorte
+								&& TipoGastoNormalizado IN {"capex", "opex"}
+								&& (EsBanco || EsEccsa)
 					)
 				)
 		formatString: 0.0
 		lineageTag: ffb6a96e-389b-4ae2-b1a5-1167a8c468dc
 
 	measure 'REAL 2026 Tabla Acum' =
-			VAR MesOrden = SELECTEDVALUE('cumplimiento_acumulado_2026_hasta_corte'[Mes Orden])
-			RETURN
-				IF(
-					ISBLANK(MesOrden),
-					BLANK(),
-					CALCULATE(
-						SUM('cumplimiento_acumulado_2026_hasta_corte'[REAL 2026]),
-						FILTER(
-							ALL('cumplimiento_acumulado_2026_hasta_corte'),
-							'cumplimiento_acumulado_2026_hasta_corte'[Mes Orden] = MesOrden
-						)
-					)
-				)
+			SUM('cumplimiento_acumulado_2026_corte'[REAL 2026])
 		formatString: 0.0
 		lineageTag: 9ce317c9-f267-4c4c-847e-894203f371ca
 

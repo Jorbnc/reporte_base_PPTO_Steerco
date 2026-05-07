@@ -42,6 +42,35 @@ table cumplimiento_anual_2026_Quantum_PE
 							{"Eccsa"}
 						}
 					)
+				VAR Base2026 =
+					ADDCOLUMNS(
+						FILTER(
+							'consulta_base',
+							VAR PaisNormalizado = LOWER(TRIM(COALESCE('consulta_base'[País], "")))
+							RETURN
+								PaisNormalizado IN {"perú", "peru"}
+									&& YEAR('consulta_base'[Mes/ Año]) = 2026
+						),
+						"__Categoria",
+							VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+							VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
+							VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+							RETURN
+								SWITCH(
+									TRUE(),
+									SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}, "Financiero",
+									SegmentoNormalizado = "retail chile"
+										&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
+										&& TipoGastoNormalizado IN {"capex", "opex"}, "Eccsa",
+									BLANK()
+								),
+						"__FCST2026",
+							IF(
+								MONTH('consulta_base'[Mes/ Año]) <= 4,
+								'consulta_base'[2026 REAL CLP],
+								'consulta_base'[2026 FCST CLP]
+							)
+					)
 				RETURN
 					ADDCOLUMNS(
 						Categorias,
@@ -49,28 +78,9 @@ table cumplimiento_anual_2026_Quantum_PE
 							VAR CategoriaActual = [Categoría]
 							RETURN
 								DIVIDE(
-									CALCULATE(
-										SUM('consulta_base'[2026LB CLP]),
-										FILTER(
-											'consulta_base',
-											VAR PaisNormalizado = LOWER(TRIM(COALESCE('consulta_base'[País], "")))
-											VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
-											VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
-											VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
-											RETURN
-												PaisNormalizado IN {"perú", "peru"}
-													&& YEAR('consulta_base'[Mes/ Año]) = 2026
-													&& SWITCH(
-														CategoriaActual,
-														"Financiero",
-															SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"},
-														"Eccsa",
-															SegmentoNormalizado = "retail chile"
-																&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
-																&& TipoGastoNormalizado IN {"capex", "opex"},
-														FALSE()
-													)
-										)
+									SUMX(
+										FILTER(Base2026, [__Categoria] = CategoriaActual),
+										'consulta_base'[2026LB CLP]
 									),
 									1000000000
 								),
@@ -79,31 +89,8 @@ table cumplimiento_anual_2026_Quantum_PE
 							RETURN
 								DIVIDE(
 									SUMX(
-										FILTER(
-											'consulta_base',
-											VAR PaisNormalizado = LOWER(TRIM(COALESCE('consulta_base'[País], "")))
-											VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
-											VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
-											VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
-											RETURN
-												PaisNormalizado IN {"perú", "peru"}
-													&& YEAR('consulta_base'[Mes/ Año]) = 2026
-													&& SWITCH(
-														CategoriaActual,
-														"Financiero",
-															SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"},
-														"Eccsa",
-															SegmentoNormalizado = "retail chile"
-																&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
-																&& TipoGastoNormalizado IN {"capex", "opex"},
-														FALSE()
-													)
-										),
-										IF(
-											MONTH('consulta_base'[Mes/ Año]) <= 4,
-											'consulta_base'[2026 REAL CLP],
-											'consulta_base'[2026 FCST CLP]
-										)
+										FILTER(Base2026, [__Categoria] = CategoriaActual),
+										[__FCST2026]
 									),
 									1000000000
 								)

@@ -46,75 +46,53 @@ table cumplimiento_acumulado_2026_corte_CL
 							{"Eccsa"}
 						}
 					)
+				VAR BaseCorte =
+					ADDCOLUMNS(
+						FILTER(
+							'consulta_base',
+							LOWER(TRIM(COALESCE('consulta_base'[País], ""))) = "chile"
+								&& YEAR('consulta_base'[Mes/ Año]) = 2026
+								&& 'consulta_base'[Mes/ Año] <= FechaCorte
+						),
+						"__Categoria",
+							VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+							VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
+							VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+							VAR EsBanco =
+								SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
+							VAR EsEccsa =
+								SegmentoNormalizado = "retail chile"
+									&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
+							RETURN
+								SWITCH(
+									TRUE(),
+									TipoGastoNormalizado = "capex" && EsBanco, "Capex",
+									TipoGastoNormalizado = "opex" && EsBanco, "Opex",
+									TipoGastoNormalizado IN {"capex", "opex"} && EsEccsa, "Eccsa",
+									BLANK()
+								)
+					)
 				RETURN
 					ADDCOLUMNS(
 						Categorias,
 						"PPTO 2026",
 							VAR CategoriaActual = [Categoría]
 							RETURN
-								CALCULATE(
-									DIVIDE(SUM('consulta_base'[PPTO 26 Aprobado CLP]), 1000000000),
-									FILTER(
-										'consulta_base',
-										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
-										VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
-										VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
-										VAR EsBanco =
-											SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
-										VAR EsEccsa =
-											SegmentoNormalizado = "retail chile"
-												&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
-										RETURN
-											LOWER(TRIM(COALESCE('consulta_base'[País], ""))) = "chile"
-												&& YEAR('consulta_base'[Mes/ Año]) = 2026
-												&& 'consulta_base'[Mes/ Año] <= FechaCorte
-												&& SWITCH(
-													CategoriaActual,
-													"Capex",
-														TipoGastoNormalizado = "capex"
-															&& EsBanco,
-													"Opex",
-														TipoGastoNormalizado = "opex"
-															&& EsBanco,
-													"Eccsa",
-														TipoGastoNormalizado IN {"capex", "opex"}
-															&& EsEccsa,
-													FALSE()
-												)
-									)
+								DIVIDE(
+									SUMX(
+										FILTER(BaseCorte, [__Categoria] = CategoriaActual),
+										'consulta_base'[PPTO 26 Aprobado CLP]
+									),
+									1000000000
 								),
 						"REAL 2026",
 							VAR CategoriaActual = [Categoría]
 							RETURN
-								CALCULATE(
-									DIVIDE(SUM('consulta_base'[2026 REAL CLP]), 1000000000),
-									FILTER(
-										'consulta_base',
-										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
-										VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
-										VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
-										VAR EsBanco =
-											SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
-										VAR EsEccsa =
-											SegmentoNormalizado = "retail chile"
-												&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
-										RETURN
-											LOWER(TRIM(COALESCE('consulta_base'[País], ""))) = "chile"
-												&& YEAR('consulta_base'[Mes/ Año]) = 2026
-												&& 'consulta_base'[Mes/ Año] <= FechaCorte
-												&& SWITCH(
-													CategoriaActual,
-													"Capex",
-														TipoGastoNormalizado = "capex"
-															&& EsBanco,
-													"Opex",
-														TipoGastoNormalizado = "opex"
-															&& EsBanco,
-													"Eccsa",
-														TipoGastoNormalizado IN {"capex", "opex"}
-															&& EsEccsa,
-													FALSE()
-												)
-									)
+								DIVIDE(
+									SUMX(
+										FILTER(BaseCorte, [__Categoria] = CategoriaActual),
+										'consulta_base'[2026 REAL CLP]
+									),
+									1000000000
 								)
 					)

@@ -36,10 +36,62 @@ table cumplimiento_acumulado_2026_corte
 		source =
 				VAR MesCorteConfig = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
 				VAR MesCorteGlobal = MIN(12, MAX(1, MesCorteConfig))
+				VAR FechaCorte = EOMONTH(DATE(2026, MesCorteGlobal, 1), 0)
+				VAR Categorias =
+					DATATABLE(
+						"Categoría", STRING,
+						{
+							{"Capex"},
+							{"Opex"},
+							{"Eccsa"}
+						}
+					)
+				VAR BaseCorte =
+					ADDCOLUMNS(
+						FILTER(
+							'consulta_base',
+							YEAR('consulta_base'[Mes/ Año]) = 2026
+								&& 'consulta_base'[Mes/ Año] <= FechaCorte
+						),
+						"__Categoria",
+							VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+							VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
+							VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+							VAR EsBanco =
+								SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
+							VAR EsEccsa =
+								SegmentoNormalizado = "retail chile"
+									&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
+							RETURN
+								SWITCH(
+									TRUE(),
+									TipoGastoNormalizado = "capex" && EsBanco, "Capex",
+									TipoGastoNormalizado = "opex" && EsBanco, "Opex",
+									TipoGastoNormalizado IN {"capex", "opex"} && EsEccsa, "Eccsa",
+									BLANK()
+								)
+					)
 				RETURN
-					SELECTCOLUMNS(
-						FILTER('cumplimiento_acumulado_2026_hasta_corte', 'cumplimiento_acumulado_2026_hasta_corte'[Mes Orden] = MesCorteGlobal),
-						"Categoría", 'cumplimiento_acumulado_2026_hasta_corte'[Categoría],
-						"PPTO 2026", 'cumplimiento_acumulado_2026_hasta_corte'[PPTO 2026],
-						"REAL 2026", 'cumplimiento_acumulado_2026_hasta_corte'[REAL 2026]
+					ADDCOLUMNS(
+						Categorias,
+						"PPTO 2026",
+							VAR CategoriaActual = [Categoría]
+							RETURN
+								DIVIDE(
+									SUMX(
+										FILTER(BaseCorte, [__Categoria] = CategoriaActual),
+										'consulta_base'[PPTO 26 Aprobado CLP]
+									),
+									1000000000
+								),
+						"REAL 2026",
+							VAR CategoriaActual = [Categoría]
+							RETURN
+								DIVIDE(
+									SUMX(
+										FILTER(BaseCorte, [__Categoria] = CategoriaActual),
+										'consulta_base'[2026 REAL CLP]
+									),
+									1000000000
+								)
 					)
