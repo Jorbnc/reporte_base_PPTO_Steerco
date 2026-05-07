@@ -63,16 +63,16 @@ table visual_acumulado_abril_financiero_CL
 						'acumulado_abril_financiero_CL',
 						"Métrica Orden", 1,
 						"Métrica", "LB BC 26",
-						"Categoría Orden", SWITCH('acumulado_abril_financiero_CL'[Categoría], "Financiero", 1, "Eccsa", 2),
-						"Categoría", 'acumulado_abril_financiero_CL'[Categoría],
+						"Categoría Orden", SWITCH('acumulado_abril_financiero_CL'[Categoría], "Financiero", 2, "Eccsa", 1),
+						"Categoría", IF('acumulado_abril_financiero_CL'[Categoría] = "Financiero", "financier", 'acumulado_abril_financiero_CL'[Categoría]),
 						"Monto", 'acumulado_abril_financiero_CL'[LB BC 26]
 					),
 					SELECTCOLUMNS(
 						'acumulado_abril_financiero_CL',
 						"Métrica Orden", 2,
 						"Métrica", "FCST 26",
-						"Categoría Orden", SWITCH('acumulado_abril_financiero_CL'[Categoría], "Financiero", 1, "Eccsa", 2),
-						"Categoría", 'acumulado_abril_financiero_CL'[Categoría],
+						"Categoría Orden", SWITCH('acumulado_abril_financiero_CL'[Categoría], "Financiero", 2, "Eccsa", 1),
+						"Categoría", IF('acumulado_abril_financiero_CL'[Categoría] = "Financiero", "financier", 'acumulado_abril_financiero_CL'[Categoría]),
 						"Monto", 'acumulado_abril_financiero_CL'[FCST 2026]
 					)
 				)

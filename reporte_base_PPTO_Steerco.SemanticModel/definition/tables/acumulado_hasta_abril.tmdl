@@ -52,16 +52,28 @@ table acumulado_hasta_abril
 	partition acumulado_hasta_abril = calculated
 		mode: import
 		source =
+				VAR MesCorteGlobal = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
 				VAR Meses =
-					DATATABLE(
-						"Mes Orden", INTEGER,
-						"Mes Corte", STRING,
-						{
-							{1, "Enero"},
-							{2, "Febrero"},
-							{3, "Marzo"},
-							{4, "Abril"}
-						}
+					FILTER(
+						DATATABLE(
+							"Mes Orden", INTEGER,
+							"Mes Corte", STRING,
+							{
+								{1, "Enero"},
+								{2, "Febrero"},
+								{3, "Marzo"},
+								{4, "Abril"},
+								{5, "Mayo"},
+								{6, "Junio"},
+								{7, "Julio"},
+								{8, "Agosto"},
+								{9, "Septiembre"},
+								{10, "Octubre"},
+								{11, "Noviembre"},
+								{12, "Diciembre"}
+							}
+						),
+						[Mes Orden] <= MesCorteGlobal
 					)
 				VAR Categorias =
 					DATATABLE(

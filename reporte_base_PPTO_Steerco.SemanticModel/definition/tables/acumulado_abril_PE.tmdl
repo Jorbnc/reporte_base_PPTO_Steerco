@@ -34,7 +34,8 @@ table acumulado_abril_PE
 	partition acumulado_abril_PE = calculated
 		mode: import
 		source =
-				VAR FechaCorte = DATE(2026, 4, 30)
+				VAR MesCorteGlobal = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
+				VAR FechaCorte = EOMONTH(DATE(2026, MesCorteGlobal, 1), 0)
 				VAR Categorias =
 					DATATABLE(
 						"Categoría", STRING,

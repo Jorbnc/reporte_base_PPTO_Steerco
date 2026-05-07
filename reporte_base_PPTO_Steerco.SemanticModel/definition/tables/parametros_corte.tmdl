@@ -1,0 +1,24 @@
+table parametros_corte
+	lineageTag: 02468f97-fcd3-4702-9385-a6088711c178
+
+	column 'Mes Corte'
+		dataType: int64
+		formatString: 0
+		lineageTag: d45c7981-9500-4d72-a1b6-528e565d1056
+		summarizeBy: none
+		sourceColumn: [Mes Corte]
+
+		annotation SummarizationSetBy = User
+
+	partition parametros_corte = calculated
+		mode: import
+		source =
+				DATATABLE(
+					"Mes Corte", INTEGER,
+					{
+						{3}
+					}
+				)
+
+	annotation Description = Cambia el valor de Mes Corte para mover las tres primeras tablas entre marzo (3), abril (4), etc.
+

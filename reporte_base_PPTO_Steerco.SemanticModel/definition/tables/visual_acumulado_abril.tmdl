@@ -63,7 +63,7 @@ table visual_acumulado_abril
 						'acumulado_abril',
 						"Métrica Orden", 1,
 						"Métrica", "PPTO 26",
-						"Categoría Orden", SWITCH('acumulado_abril'[Categoría], "Capex", 1, "Opex", 2, "Eccsa", 3),
+						"Categoría Orden", SWITCH('acumulado_abril'[Categoría], "Capex", 3, "Opex", 2, "Eccsa", 1),
 						"Categoría", 'acumulado_abril'[Categoría],
 						"Monto", 'acumulado_abril'[PPTO 2026]
 					),
@@ -71,7 +71,7 @@ table visual_acumulado_abril
 						'acumulado_abril',
 						"Métrica Orden", 2,
 						"Métrica", "REAL 26",
-						"Categoría Orden", SWITCH('acumulado_abril'[Categoría], "Capex", 1, "Opex", 2, "Eccsa", 3),
+						"Categoría Orden", SWITCH('acumulado_abril'[Categoría], "Capex", 3, "Opex", 2, "Eccsa", 1),
 						"Categoría", 'acumulado_abril'[Categoría],
 						"Monto", 'acumulado_abril'[REAL 2026]
 					)

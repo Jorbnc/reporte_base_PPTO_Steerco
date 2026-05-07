@@ -13,6 +13,7 @@ annotation PBI_QueryOrder = ["consulta_base"]
 annotation PBI_ProTooling = ["DevMode"]
 
 ref table consulta_base
+ref table parametros_corte
 ref table acumulado_hasta_abril
 ref table acumulado_abril
 ref table acumulado_abril_CL

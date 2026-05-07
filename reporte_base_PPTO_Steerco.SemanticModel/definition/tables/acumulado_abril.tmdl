@@ -34,8 +34,9 @@ table acumulado_abril
 	partition acumulado_abril = calculated
 		mode: import
 		source =
+				VAR MesCorteGlobal = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
 				SELECTCOLUMNS(
-					FILTER('acumulado_hasta_abril', 'acumulado_hasta_abril'[Mes Orden] = 4),
+					FILTER('acumulado_hasta_abril', 'acumulado_hasta_abril'[Mes Orden] = MesCorteGlobal),
 					"Categoría", 'acumulado_hasta_abril'[Categoría],
 					"PPTO 2026", 'acumulado_hasta_abril'[PPTO 2026],
 					"REAL 2026", 'acumulado_hasta_abril'[REAL 2026]
