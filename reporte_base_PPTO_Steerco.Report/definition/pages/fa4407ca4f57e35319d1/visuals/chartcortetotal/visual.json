@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "chartabriltotal",
+  "name": "chartcortetotal",
   "position": {
     "x": 24,
     "y": 36,
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_abril"
+                      "Entity": "visual_acumulado_corte"
                     }
                   },
                   "Property": "Métrica"
                 }
               },
-              "queryRef": "visual_acumulado_abril.Métrica",
+              "queryRef": "visual_acumulado_corte.Métrica",
               "nativeQueryRef": "Métrica",
               "active": true
             }
@@ -39,13 +39,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_abril"
+                      "Entity": "visual_acumulado_corte"
                     }
                   },
                   "Property": "Categoría"
                 }
               },
-              "queryRef": "visual_acumulado_abril.Categoría",
+              "queryRef": "visual_acumulado_corte.Categoría",
               "nativeQueryRef": "Categoría",
               "active": true
             }
@@ -58,14 +58,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_abril"
+                      "Entity": "visual_acumulado_corte"
                     }
                   },
-                  "Property": "Monto Abril"
+                  "Property": "Monto Corte"
                 }
               },
-              "queryRef": "visual_acumulado_abril.Monto Abril",
-              "nativeQueryRef": "Monto Abril"
+              "queryRef": "visual_acumulado_corte.Monto Corte",
+              "nativeQueryRef": "Monto Corte"
             }
           ]
         }
@@ -77,7 +77,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "visual_acumulado_abril"
+                    "Entity": "visual_acumulado_corte"
                   }
                 },
                 "Property": "Métrica"
@@ -144,7 +144,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Abril acumulado'"
+                  "Value": "'Corte acumulado'"
                 }
               }
             }

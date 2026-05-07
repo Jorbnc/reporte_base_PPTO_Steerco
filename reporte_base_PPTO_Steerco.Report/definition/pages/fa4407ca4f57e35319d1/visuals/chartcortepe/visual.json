@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "chartfinabrilpe",
+  "name": "chartcortepe",
   "position": {
     "x": 864,
-    "y": 374,
-    "z": 1500,
+    "y": 36,
+    "z": 1200,
     "height": 290,
     "width": 392,
-    "tabOrder": 1500
+    "tabOrder": 1200
   },
   "visual": {
     "visualType": "columnChart",
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_abril_financiero_PE"
+                      "Entity": "visual_acumulado_corte_PE"
                     }
                   },
                   "Property": "Métrica"
                 }
               },
-              "queryRef": "visual_acumulado_abril_financiero_PE.Métrica",
+              "queryRef": "visual_acumulado_corte_PE.Métrica",
               "nativeQueryRef": "Métrica",
               "active": true
             }
@@ -39,13 +39,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_abril_financiero_PE"
+                      "Entity": "visual_acumulado_corte_PE"
                     }
                   },
                   "Property": "Categoría"
                 }
               },
-              "queryRef": "visual_acumulado_abril_financiero_PE.Categoría",
+              "queryRef": "visual_acumulado_corte_PE.Categoría",
               "nativeQueryRef": "Categoría",
               "active": true
             }
@@ -58,14 +58,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_abril_financiero_PE"
+                      "Entity": "visual_acumulado_corte_PE"
                     }
                   },
-                  "Property": "Monto Abril Financiero PE"
+                  "Property": "Monto Corte PE"
                 }
               },
-              "queryRef": "visual_acumulado_abril_financiero_PE.Monto Abril Financiero PE",
-              "nativeQueryRef": "Monto Abril Financiero PE"
+              "queryRef": "visual_acumulado_corte_PE.Monto Corte PE",
+              "nativeQueryRef": "Monto Corte PE"
             }
           ]
         }
@@ -77,7 +77,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "visual_acumulado_abril_financiero_PE"
+                    "Entity": "visual_acumulado_corte_PE"
                   }
                 },
                 "Property": "Métrica"
@@ -144,7 +144,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Abril financiero PE'"
+                  "Value": "'Corte acumulado PE'"
                 }
               }
             }

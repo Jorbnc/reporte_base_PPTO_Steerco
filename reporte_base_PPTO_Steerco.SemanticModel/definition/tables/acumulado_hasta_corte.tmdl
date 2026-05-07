@@ -1,4 +1,4 @@
-table acumulado_hasta_abril
+table acumulado_hasta_corte
 	lineageTag: 9cf8404f-1817-4006-9090-644116273cf1
 
 	column 'Mes Orden'
@@ -49,7 +49,7 @@ table acumulado_hasta_abril
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition acumulado_hasta_abril = calculated
+	partition acumulado_hasta_corte = calculated
 		mode: import
 		source =
 				VAR MesCorteGlobal = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])

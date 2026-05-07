@@ -1,8 +1,8 @@
-table visual_acumulado_abril_financiero
+table visual_acumulado_financiero_2026
 	isHidden
 	lineageTag: a835e28e-dad8-4543-9be7-6d0f0e04d427
 
-	measure 'Monto Abril Financiero' = SUM('visual_acumulado_abril_financiero'[Monto])
+	measure 'Monto Financiero 2026' = SUM('visual_acumulado_financiero_2026'[Monto])
 		formatString: 0.0
 		lineageTag: 92399534-160b-4266-9097-2c6dd307eaca
 
@@ -55,24 +55,24 @@ table visual_acumulado_abril_financiero
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition visual_acumulado_abril_financiero = calculated
+	partition visual_acumulado_financiero_2026 = calculated
 		mode: import
 		source =
 				UNION(
 					SELECTCOLUMNS(
-						'acumulado_abril_financiero',
+						'acumulado_financiero_2026',
 						"Métrica Orden", 1,
 						"Métrica", "LB BC 26",
-						"Categoría Orden", SWITCH('acumulado_abril_financiero'[Categoría], "Financiero", 2, "Eccsa", 1),
-						"Categoría", IF('acumulado_abril_financiero'[Categoría] = "Financiero", "financier", 'acumulado_abril_financiero'[Categoría]),
-						"Monto", 'acumulado_abril_financiero'[LB BC 26]
+						"Categoría Orden", SWITCH('acumulado_financiero_2026'[Categoría], "Financiero", 2, "Eccsa", 1),
+						"Categoría", IF('acumulado_financiero_2026'[Categoría] = "Financiero", "financier", 'acumulado_financiero_2026'[Categoría]),
+						"Monto", 'acumulado_financiero_2026'[LB BC 26]
 					),
 					SELECTCOLUMNS(
-						'acumulado_abril_financiero',
+						'acumulado_financiero_2026',
 						"Métrica Orden", 2,
 						"Métrica", "FCST 26",
-						"Categoría Orden", SWITCH('acumulado_abril_financiero'[Categoría], "Financiero", 2, "Eccsa", 1),
-						"Categoría", IF('acumulado_abril_financiero'[Categoría] = "Financiero", "financier", 'acumulado_abril_financiero'[Categoría]),
-						"Monto", 'acumulado_abril_financiero'[FCST 2026]
+						"Categoría Orden", SWITCH('acumulado_financiero_2026'[Categoría], "Financiero", 2, "Eccsa", 1),
+						"Categoría", IF('acumulado_financiero_2026'[Categoría] = "Financiero", "financier", 'acumulado_financiero_2026'[Categoría]),
+						"Monto", 'acumulado_financiero_2026'[FCST 2026]
 					)
 				)

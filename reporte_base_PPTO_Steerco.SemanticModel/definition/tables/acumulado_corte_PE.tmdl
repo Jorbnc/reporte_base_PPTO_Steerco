@@ -1,4 +1,4 @@
-table acumulado_abril_PE
+table acumulado_corte_PE
 	lineageTag: 5daea088-01a6-4f32-a133-133d2fd41b9f
 
 	column Categoría
@@ -31,7 +31,7 @@ table acumulado_abril_PE
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition acumulado_abril_PE = calculated
+	partition acumulado_corte_PE = calculated
 		mode: import
 		source =
 				VAR MesCorteGlobal = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])

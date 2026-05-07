@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "chartfinabriltotal",
+  "name": "chartfin2026cl",
   "position": {
-    "x": 24,
+    "x": 444,
     "y": 374,
-    "z": 1300,
+    "z": 1400,
     "height": 290,
     "width": 392,
-    "tabOrder": 1300
+    "tabOrder": 1400
   },
   "visual": {
     "visualType": "columnChart",
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_abril_financiero"
+                      "Entity": "visual_acumulado_financiero_2026_CL"
                     }
                   },
                   "Property": "Métrica"
                 }
               },
-              "queryRef": "visual_acumulado_abril_financiero.Métrica",
+              "queryRef": "visual_acumulado_financiero_2026_CL.Métrica",
               "nativeQueryRef": "Métrica",
               "active": true
             }
@@ -39,13 +39,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_abril_financiero"
+                      "Entity": "visual_acumulado_financiero_2026_CL"
                     }
                   },
                   "Property": "Categoría"
                 }
               },
-              "queryRef": "visual_acumulado_abril_financiero.Categoría",
+              "queryRef": "visual_acumulado_financiero_2026_CL.Categoría",
               "nativeQueryRef": "Categoría",
               "active": true
             }
@@ -58,14 +58,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_abril_financiero"
+                      "Entity": "visual_acumulado_financiero_2026_CL"
                     }
                   },
-                  "Property": "Monto Abril Financiero"
+                  "Property": "Monto Financiero 2026 CL"
                 }
               },
-              "queryRef": "visual_acumulado_abril_financiero.Monto Abril Financiero",
-              "nativeQueryRef": "Monto Abril Financiero"
+              "queryRef": "visual_acumulado_financiero_2026_CL.Monto Financiero 2026 CL",
+              "nativeQueryRef": "Monto Financiero 2026 CL"
             }
           ]
         }
@@ -77,7 +77,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "visual_acumulado_abril_financiero"
+                    "Entity": "visual_acumulado_financiero_2026_CL"
                   }
                 },
                 "Property": "Métrica"
@@ -144,7 +144,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Abril financiero'"
+                  "Value": "'Financiero 2026 CL'"
                 }
               }
             }

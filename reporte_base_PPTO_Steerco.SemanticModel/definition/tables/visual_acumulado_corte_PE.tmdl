@@ -1,16 +1,16 @@
-table visual_acumulado_abril
+table visual_acumulado_corte_PE
 	isHidden
-	lineageTag: 8744f19b-ad96-4643-97ca-4c3665a2cb89
+	lineageTag: 2a8a2d7f-db37-4649-85aa-072c84a023a7
 
-	measure 'Monto Abril' = SUM('visual_acumulado_abril'[Monto])
+	measure 'Monto Corte PE' = SUM('visual_acumulado_corte_PE'[Monto])
 		formatString: 0.0
-		lineageTag: b5588efd-837f-466e-b11e-22e8ffdc2a08
+		lineageTag: b78b5f15-eeba-4803-b7d7-2c04a9dfd06b
 
 	column 'Métrica Orden'
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: 73fcdbfb-4d78-4913-b948-f5e9e899270a
+		lineageTag: 4d5d03e3-6b2b-4157-a84a-695b64a475f4
 		summarizeBy: none
 		sourceColumn: [Métrica Orden]
 
@@ -18,7 +18,7 @@ table visual_acumulado_abril
 
 	column Métrica
 		dataType: string
-		lineageTag: 948af633-3cbe-4173-ad29-222e65b9c26a
+		lineageTag: 5908fb65-a29c-4525-8ca4-4e95b788b7a7
 		summarizeBy: none
 		sourceColumn: [Métrica]
 		sortByColumn: 'Métrica Orden'
@@ -29,7 +29,7 @@ table visual_acumulado_abril
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: 9508b6a7-0f8f-4450-a811-8f4e90d928bb
+		lineageTag: ee28529e-8671-4bc1-942a-bc55f630ec08
 		summarizeBy: none
 		sourceColumn: [Categoría Orden]
 
@@ -37,7 +37,7 @@ table visual_acumulado_abril
 
 	column Categoría
 		dataType: string
-		lineageTag: 70c905a4-2910-4cb1-a9e2-848c6527a828
+		lineageTag: 7ba00180-0e99-4615-b401-d61acd9fa825
 		summarizeBy: none
 		sourceColumn: [Categoría]
 		sortByColumn: 'Categoría Orden'
@@ -47,7 +47,7 @@ table visual_acumulado_abril
 	column Monto
 		dataType: double
 		formatString: 0.0
-		lineageTag: e8c9f19f-00a3-4d8b-8172-1c1e794271b4
+		lineageTag: b1a71441-6d13-4b37-b41a-bb564c652b3d
 		summarizeBy: sum
 		sourceColumn: [Monto]
 
@@ -55,24 +55,24 @@ table visual_acumulado_abril
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition visual_acumulado_abril = calculated
+	partition visual_acumulado_corte_PE = calculated
 		mode: import
 		source =
 				UNION(
 					SELECTCOLUMNS(
-						'acumulado_abril',
+						'acumulado_corte_PE',
 						"Métrica Orden", 1,
 						"Métrica", "PPTO 26",
-						"Categoría Orden", SWITCH('acumulado_abril'[Categoría], "Capex", 3, "Opex", 2, "Eccsa", 1),
-						"Categoría", 'acumulado_abril'[Categoría],
-						"Monto", 'acumulado_abril'[PPTO 2026]
+						"Categoría Orden", SWITCH('acumulado_corte_PE'[Categoría], "Capex", 3, "Opex", 2, "Eccsa", 1),
+						"Categoría", 'acumulado_corte_PE'[Categoría],
+						"Monto", 'acumulado_corte_PE'[PPTO 2026]
 					),
 					SELECTCOLUMNS(
-						'acumulado_abril',
+						'acumulado_corte_PE',
 						"Métrica Orden", 2,
 						"Métrica", "REAL 26",
-						"Categoría Orden", SWITCH('acumulado_abril'[Categoría], "Capex", 3, "Opex", 2, "Eccsa", 1),
-						"Categoría", 'acumulado_abril'[Categoría],
-						"Monto", 'acumulado_abril'[REAL 2026]
+						"Categoría Orden", SWITCH('acumulado_corte_PE'[Categoría], "Capex", 3, "Opex", 2, "Eccsa", 1),
+						"Categoría", 'acumulado_corte_PE'[Categoría],
+						"Monto", 'acumulado_corte_PE'[REAL 2026]
 					)
 				)

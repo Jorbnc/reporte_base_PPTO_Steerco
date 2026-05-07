@@ -1,9 +1,9 @@
-table acumulado_abril_financiero
-	lineageTag: b9a8ef32-5143-4126-a9e7-a81fbeb3922f
+table acumulado_financiero_2026_PE
+	lineageTag: 122e1abc-5d4b-405a-845d-4d5b960f8b84
 
 	column Categoría
 		dataType: string
-		lineageTag: 67e9927b-ab0d-4280-9ead-a56df86283e8
+		lineageTag: bc5f3786-1544-4b05-b8ef-97a1bfb8810d
 		summarizeBy: none
 		sourceColumn: [Categoría]
 
@@ -12,7 +12,7 @@ table acumulado_abril_financiero
 	column 'LB BC 26'
 		dataType: double
 		formatString: 0.0
-		lineageTag: d42fe701-87e6-4950-b56b-b4e4125e4d23
+		lineageTag: 9a05a113-313f-4d0c-ad86-1fe2d6575d2f
 		summarizeBy: sum
 		sourceColumn: [LB BC 26]
 
@@ -23,7 +23,7 @@ table acumulado_abril_financiero
 	column 'FCST 2026'
 		dataType: double
 		formatString: 0.0
-		lineageTag: c1440821-6cc6-475a-9914-365a01df2af9
+		lineageTag: f3c4ddec-5b29-41cf-857f-24e35059bd49
 		summarizeBy: sum
 		sourceColumn: [FCST 2026]
 
@@ -31,7 +31,7 @@ table acumulado_abril_financiero
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition acumulado_abril_financiero = calculated
+	partition acumulado_financiero_2026_PE = calculated
 		mode: import
 		source =
 				VAR Categorias =
@@ -53,9 +53,11 @@ table acumulado_abril_financiero
 										SUM('consulta_base'[2026LB CLP]),
 										FILTER(
 											'consulta_base',
+											VAR PaisNormalizado = LOWER(TRIM(COALESCE('consulta_base'[País], "")))
 											VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
 											RETURN
-												YEAR('consulta_base'[Mes/ Año]) = 2026
+												PaisNormalizado IN {"perú", "peru"}
+													&& YEAR('consulta_base'[Mes/ Año]) = 2026
 													&& SWITCH(
 														CategoriaActual,
 														"Financiero",
@@ -76,9 +78,11 @@ table acumulado_abril_financiero
 									SUMX(
 										FILTER(
 											'consulta_base',
+											VAR PaisNormalizado = LOWER(TRIM(COALESCE('consulta_base'[País], "")))
 											VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
 											RETURN
-												YEAR('consulta_base'[Mes/ Año]) = 2026
+												PaisNormalizado IN {"perú", "peru"}
+													&& YEAR('consulta_base'[Mes/ Año]) = 2026
 													&& SWITCH(
 														CategoriaActual,
 														"Financiero",

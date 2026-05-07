@@ -1,9 +1,9 @@
-table acumulado_abril_financiero_CL
-	lineageTag: 4025f21f-921f-489f-b47c-cc73bb2e4b83
+table acumulado_financiero_2026
+	lineageTag: b9a8ef32-5143-4126-a9e7-a81fbeb3922f
 
 	column Categoría
 		dataType: string
-		lineageTag: 0922216f-a532-48af-bd19-a7b6fff98a7a
+		lineageTag: 67e9927b-ab0d-4280-9ead-a56df86283e8
 		summarizeBy: none
 		sourceColumn: [Categoría]
 
@@ -12,7 +12,7 @@ table acumulado_abril_financiero_CL
 	column 'LB BC 26'
 		dataType: double
 		formatString: 0.0
-		lineageTag: f30057d0-1b58-46e1-945d-96164262578c
+		lineageTag: d42fe701-87e6-4950-b56b-b4e4125e4d23
 		summarizeBy: sum
 		sourceColumn: [LB BC 26]
 
@@ -23,7 +23,7 @@ table acumulado_abril_financiero_CL
 	column 'FCST 2026'
 		dataType: double
 		formatString: 0.0
-		lineageTag: d908f506-1c3b-4463-a6c2-55e84ea65494
+		lineageTag: c1440821-6cc6-475a-9914-365a01df2af9
 		summarizeBy: sum
 		sourceColumn: [FCST 2026]
 
@@ -31,7 +31,7 @@ table acumulado_abril_financiero_CL
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition acumulado_abril_financiero_CL = calculated
+	partition acumulado_financiero_2026 = calculated
 		mode: import
 		source =
 				VAR Categorias =
@@ -55,8 +55,7 @@ table acumulado_abril_financiero_CL
 											'consulta_base',
 											VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
 											RETURN
-												LOWER(TRIM(COALESCE('consulta_base'[País], ""))) = "chile"
-													&& YEAR('consulta_base'[Mes/ Año]) = 2026
+												YEAR('consulta_base'[Mes/ Año]) = 2026
 													&& SWITCH(
 														CategoriaActual,
 														"Financiero",
@@ -79,8 +78,7 @@ table acumulado_abril_financiero_CL
 											'consulta_base',
 											VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
 											RETURN
-												LOWER(TRIM(COALESCE('consulta_base'[País], ""))) = "chile"
-													&& YEAR('consulta_base'[Mes/ Año]) = 2026
+												YEAR('consulta_base'[Mes/ Año]) = 2026
 													&& SWITCH(
 														CategoriaActual,
 														"Financiero",

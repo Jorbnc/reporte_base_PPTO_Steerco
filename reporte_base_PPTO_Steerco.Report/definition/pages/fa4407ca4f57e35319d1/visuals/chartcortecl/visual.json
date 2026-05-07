@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "chartabrilcl",
+  "name": "chartcortecl",
   "position": {
     "x": 444,
     "y": 36,
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_abril_CL"
+                      "Entity": "visual_acumulado_corte_CL"
                     }
                   },
                   "Property": "Métrica"
                 }
               },
-              "queryRef": "visual_acumulado_abril_CL.Métrica",
+              "queryRef": "visual_acumulado_corte_CL.Métrica",
               "nativeQueryRef": "Métrica",
               "active": true
             }
@@ -39,13 +39,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_abril_CL"
+                      "Entity": "visual_acumulado_corte_CL"
                     }
                   },
                   "Property": "Categoría"
                 }
               },
-              "queryRef": "visual_acumulado_abril_CL.Categoría",
+              "queryRef": "visual_acumulado_corte_CL.Categoría",
               "nativeQueryRef": "Categoría",
               "active": true
             }
@@ -58,14 +58,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_abril_CL"
+                      "Entity": "visual_acumulado_corte_CL"
                     }
                   },
-                  "Property": "Monto Abril CL"
+                  "Property": "Monto Corte CL"
                 }
               },
-              "queryRef": "visual_acumulado_abril_CL.Monto Abril CL",
-              "nativeQueryRef": "Monto Abril CL"
+              "queryRef": "visual_acumulado_corte_CL.Monto Corte CL",
+              "nativeQueryRef": "Monto Corte CL"
             }
           ]
         }
@@ -77,7 +77,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "visual_acumulado_abril_CL"
+                    "Entity": "visual_acumulado_corte_CL"
                   }
                 },
                 "Property": "Métrica"
@@ -144,7 +144,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Abril acumulado CL'"
+                  "Value": "'Corte acumulado CL'"
                 }
               }
             }
