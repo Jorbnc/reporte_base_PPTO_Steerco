@@ -195,6 +195,14 @@ table consulta_base
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	column 'Tipo de Gasto'
+		dataType: string
+		lineageTag: db4df0be-54b4-409e-b9ee-ce636709db70
+		summarizeBy: none
+		sourceColumn: Tipo de Gasto
+
+		annotation SummarizationSetBy = Automatic
+
 	partition consulta_base = m
 		mode: import
 		source =
@@ -207,7 +215,7 @@ table consulta_base
 				    #"Filas superiores quitadas" = Table.Skip(#"Base Banco_Sheet",2),
 				    #"Encabezados promovidos" = Table.PromoteHeaders(#"Filas superiores quitadas", [PromoteAllScalars=true]),
 				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"País", type text}, {"Segmento ", type text}, {"Segmento Contable", type text}, {"Cod Sociedad", Int64.Type}, {"Sociedad ", type text}, {"Categoría Comité", type text}, {"Categoría Corp", type text}, {"Direccionable Original ", type text}, {"Direccionable Nuevo", type text}, {"Perimetro", type text}, {"AMS/ IMS", type text}, {"Torre", type text}, {"Gerente Responsable ", type text}, {"TM/ PMO Responsable", type text}, {"Gerencia 1° Linea", type text}, {"Gerencia 2° Linea", type text}, {"Responsable Interno", type text}, {"Amortizado", type text}, {"Tipo de Gasto", type text}, {"Proveedor", type text}, {"Servicio", type text}, {"Cruce CDG", type text}, {"Numero Cuenta", type any}, {"Nombre Cuenta", type text}, {"Ceco", type text}, {"Gcia TI/ Otros", type text}, {"VST", type text}, {"Cód.Presupuesto", type text}, {"Cod PPTO Int", type text}, {"COD Identificador", type any}, {"Acreedor", type any}, {"Pago de Servicios", type text}, {"ID_Contrato", type text}, {"Fecha Inicio Contrato", type any}, {"Fecha Fin Contrato", type any}, {"Moneda Contrato", type text}, {"Afecta Impto.", type text}, {"Impto adi.", type text}, {"Mes/ Año", type date}, {"2025 LB MC", type text}, {"2025 PPTO MC", type number}, {"2025 REAL MC", Int64.Type}, {"2025 FCST MC", type number}, {"2026LB MC", type any}, {"2026 FCST MC", Int64.Type}, {"2026 REAL MC", type any}, {"2026 PPTO Aprobado MC", type any}, {"2025 LB MO", type any}, {"2025 PPTO MO", type number}, {"2025 REAL MO", Int64.Type}, {"2025 FCST MO", type number}, {"2026LB MO", type any}, {"2026 FCST MO", Int64.Type}, {"2026 REAL MO", type any}, {"PPTO 26 Aprobado MO", type any}, {"VB MO", type text}, {"2025 LB USD", type any}, {"2025 PPTO USD", type number}, {"2025 REAL USD", type number}, {"2025 FCST USD", type number}, {"2026LB USD", type text}, {"2026 FCST USD", Int64.Type}, {"2026 REAL USD", type any}, {"PPTO 26 Aprobado USD", type any}, {"2025 LB CLP", type text}, {"2025 PPTO CLP", type number}, {"2025 REAL  CLP", Int64.Type}, {"2025 FCST CLP", type number}, {"2026LB CLP", type text}, {"2026 FCST CLP", Int64.Type}, {"2026 REAL CLP", type any}, {"PPTO 26 Aprobado CLP", type text}, {"Tipo de OC planifiación", type any}, {"Comentarios", type text}, {"CRUCE", type text}}),
-				    #"Otras columnas quitadas" = Table.SelectColumns(#"Tipo cambiado",{"País", "Segmento ", "Categoría Comité", "Direccionable Nuevo", "Perimetro", "AMS/ IMS", "Torre", "Gerencia 1° Linea", "Gerencia 2° Linea", "Proveedor", "Moneda Contrato", "Mes/ Año", "2025 REAL MO", "2026 FCST MO", "2026 REAL MO", "PPTO 26 Aprobado MO", "2025 REAL  CLP", "2026LB CLP", "2026 FCST CLP", "2026 REAL CLP", "PPTO 26 Aprobado CLP"}),
+				    #"Otras columnas quitadas" = Table.SelectColumns(#"Tipo cambiado",{"País", "Segmento ", "Categoría Comité", "Direccionable Nuevo", "Perimetro", "AMS/ IMS", "Torre", "Gerencia 1° Linea", "Gerencia 2° Linea", "Tipo de Gasto", "Proveedor", "Moneda Contrato", "Mes/ Año", "2025 REAL MO", "2026 FCST MO", "2026 REAL MO", "PPTO 26 Aprobado MO", "2025 REAL  CLP", "2026LB CLP", "2026 FCST CLP", "2026 REAL CLP", "PPTO 26 Aprobado CLP"}),
 				    #"Errores reemplazados" = Table.ReplaceErrorValues(#"Otras columnas quitadas", {{"Categoría Comité", null}}),
 				    #"Tipo cambiado1" = Table.TransformColumnTypes(#"Errores reemplazados",{{"2025 REAL MO", type number}, {"2026 FCST MO", type number}, {"2026 REAL MO", type number}, {"PPTO 26 Aprobado MO", type number}, {"2025 REAL  CLP", type number}, {"2026LB CLP", type number}, {"2026 FCST CLP", type number}, {"2026 REAL CLP", type number}, {"PPTO 26 Aprobado CLP", type number}}),
 				    #"Errores reemplazados1" = Table.ReplaceErrorValues(#"Tipo cambiado1", {{"PPTO 26 Aprobado CLP", null}}),
