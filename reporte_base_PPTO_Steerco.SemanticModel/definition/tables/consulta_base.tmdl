@@ -16,8 +16,20 @@ table consulta_base
 						DIVIDE(SUM('consulta_base'[PPTO 26 Aprobado CLP]), 1000000000),
 						FILTER(
 							ALL('consulta_base'),
-							YEAR('consulta_base'[Mes/ Año]) = 2026
-								&& 'consulta_base'[Mes/ Año] <= FechaCorte
+							VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+							VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+							VAR EsRetailChilePeru =
+								SegmentoNormalizado IN {"retail chile", "retail perú", "retail peru"}
+							VAR EsRetailChileKyndryl =
+								SegmentoNormalizado = "retail chile"
+									&& CONTAINSSTRING(LOWER(COALESCE('consulta_base'[Proveedor], "")), "kyndryl")
+							VAR EsCategoriaIncluida =
+								(TipoGastoNormalizado IN {"capex", "opex"} && NOT EsRetailChilePeru)
+									|| EsRetailChileKyndryl
+							RETURN
+								YEAR('consulta_base'[Mes/ Año]) = 2026
+									&& 'consulta_base'[Mes/ Año] <= FechaCorte
+									&& EsCategoriaIncluida
 						)
 					)
 				)
@@ -60,8 +72,20 @@ table consulta_base
 						DIVIDE(SUM('consulta_base'[2026 REAL CLP]), 1000000000),
 						FILTER(
 							ALL('consulta_base'),
-							YEAR('consulta_base'[Mes/ Año]) = 2026
-								&& 'consulta_base'[Mes/ Año] <= FechaCorte
+							VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+							VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+							VAR EsRetailChilePeru =
+								SegmentoNormalizado IN {"retail chile", "retail perú", "retail peru"}
+							VAR EsRetailChileKyndryl =
+								SegmentoNormalizado = "retail chile"
+									&& CONTAINSSTRING(LOWER(COALESCE('consulta_base'[Proveedor], "")), "kyndryl")
+							VAR EsCategoriaIncluida =
+								(TipoGastoNormalizado IN {"capex", "opex"} && NOT EsRetailChilePeru)
+									|| EsRetailChileKyndryl
+							RETURN
+								YEAR('consulta_base'[Mes/ Año]) = 2026
+									&& 'consulta_base'[Mes/ Año] <= FechaCorte
+									&& EsCategoriaIncluida
 						)
 					)
 				)

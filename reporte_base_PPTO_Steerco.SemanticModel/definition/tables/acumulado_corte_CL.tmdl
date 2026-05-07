@@ -56,6 +56,8 @@ table acumulado_corte_CL
 									FILTER(
 										'consulta_base',
 										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+										VAR EsRetailChilePeru =
+											SegmentoNormalizado IN {"retail chile", "retail perú", "retail peru"}
 										VAR EsRetailChileKyndryl =
 											SegmentoNormalizado = "retail chile"
 												&& CONTAINSSTRING(LOWER(COALESCE('consulta_base'[Proveedor], "")), "kyndryl")
@@ -67,10 +69,10 @@ table acumulado_corte_CL
 													CategoriaActual,
 													"Capex",
 														LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "capex"
-															&& NOT EsRetailChileKyndryl,
+															&& NOT EsRetailChilePeru,
 													"Opex",
 														LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "opex"
-															&& NOT EsRetailChileKyndryl,
+															&& NOT EsRetailChilePeru,
 													"Eccsa",
 														EsRetailChileKyndryl,
 													FALSE()
@@ -85,6 +87,8 @@ table acumulado_corte_CL
 									FILTER(
 										'consulta_base',
 										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+										VAR EsRetailChilePeru =
+											SegmentoNormalizado IN {"retail chile", "retail perú", "retail peru"}
 										VAR EsRetailChileKyndryl =
 											SegmentoNormalizado = "retail chile"
 												&& CONTAINSSTRING(LOWER(COALESCE('consulta_base'[Proveedor], "")), "kyndryl")
@@ -96,10 +100,10 @@ table acumulado_corte_CL
 													CategoriaActual,
 													"Capex",
 														LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "capex"
-															&& NOT EsRetailChileKyndryl,
+															&& NOT EsRetailChilePeru,
 													"Opex",
 														LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "opex"
-															&& NOT EsRetailChileKyndryl,
+															&& NOT EsRetailChilePeru,
 													"Eccsa",
 														EsRetailChileKyndryl,
 													FALSE()
