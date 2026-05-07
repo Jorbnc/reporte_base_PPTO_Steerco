@@ -1,0 +1,41 @@
+table acumulado_abril
+	lineageTag: bdf2076c-ecf8-4a26-88c0-71b5b788a1fe
+
+	column Categoría
+		dataType: string
+		lineageTag: 1d33f9fd-8a71-44f2-b3a0-2c311ae69892
+		summarizeBy: none
+		sourceColumn: [Categoría]
+
+		annotation SummarizationSetBy = User
+
+	column 'PPTO 2026'
+		dataType: double
+		lineageTag: 1e29c3aa-ab41-4eb5-a712-25b93796b315
+		summarizeBy: sum
+		sourceColumn: [PPTO 2026]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'REAL 2026'
+		dataType: double
+		lineageTag: ef4c7ec2-d8fb-41d4-96c2-c7dc18f36b90
+		summarizeBy: sum
+		sourceColumn: [REAL 2026]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition acumulado_abril = calculated
+		mode: import
+		source =
+				SELECTCOLUMNS(
+					FILTER('acumulado_hasta_abril', 'acumulado_hasta_abril'[Mes Orden] = 4),
+					"Categoría", 'acumulado_hasta_abril'[Categoría],
+					"PPTO 2026", 'acumulado_hasta_abril'[PPTO 2026],
+					"REAL 2026", 'acumulado_hasta_abril'[REAL 2026]
+				)
+

@@ -2,7 +2,7 @@ table consulta_base
 	lineageTag: 532c6af5-c767-40ce-bce4-f0005aa52559
 
 	measure 'PPTO 2026 Base Acum' =
-			VAR MesOrden = SELECTEDVALUE('acumulado_CL_PE'[Mes Orden])
+			VAR MesOrden = SELECTEDVALUE('acumulado_hasta_abril'[Mes Orden])
 			VAR FechaCorte =
 				IF(
 					NOT ISBLANK(MesOrden),
@@ -25,16 +25,16 @@ table consulta_base
 		lineageTag: 4ab693b3-ade1-43db-b2b3-f4493d8afe13
 
 	measure 'PPTO 2026 Tabla Acum' =
-			VAR MesOrden = SELECTEDVALUE('acumulado_CL_PE'[Mes Orden])
+			VAR MesOrden = SELECTEDVALUE('acumulado_hasta_abril'[Mes Orden])
 			RETURN
 				IF(
 					ISBLANK(MesOrden),
 					BLANK(),
 					CALCULATE(
-						SUM('acumulado_CL_PE'[PPTO 2026]),
+						SUM('acumulado_hasta_abril'[PPTO 2026]),
 						FILTER(
-							ALL('acumulado_CL_PE'),
-							'acumulado_CL_PE'[Mes Orden] = MesOrden
+							ALL('acumulado_hasta_abril'),
+							'acumulado_hasta_abril'[Mes Orden] = MesOrden
 						)
 					)
 				)
@@ -46,7 +46,7 @@ table consulta_base
 		lineageTag: d8bb56aa-e52a-4584-bf5c-d10874544861
 
 	measure 'REAL 2026 Base Acum' =
-			VAR MesOrden = SELECTEDVALUE('acumulado_CL_PE'[Mes Orden])
+			VAR MesOrden = SELECTEDVALUE('acumulado_hasta_abril'[Mes Orden])
 			VAR FechaCorte =
 				IF(
 					NOT ISBLANK(MesOrden),
@@ -69,16 +69,16 @@ table consulta_base
 		lineageTag: ffb6a96e-389b-4ae2-b1a5-1167a8c468dc
 
 	measure 'REAL 2026 Tabla Acum' =
-			VAR MesOrden = SELECTEDVALUE('acumulado_CL_PE'[Mes Orden])
+			VAR MesOrden = SELECTEDVALUE('acumulado_hasta_abril'[Mes Orden])
 			RETURN
 				IF(
 					ISBLANK(MesOrden),
 					BLANK(),
 					CALCULATE(
-						SUM('acumulado_CL_PE'[REAL 2026]),
+						SUM('acumulado_hasta_abril'[REAL 2026]),
 						FILTER(
-							ALL('acumulado_CL_PE'),
-							'acumulado_CL_PE'[Mes Orden] = MesOrden
+							ALL('acumulado_hasta_abril'),
+							'acumulado_hasta_abril'[Mes Orden] = MesOrden
 						)
 					)
 				)

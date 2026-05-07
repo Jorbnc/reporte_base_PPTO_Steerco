@@ -1,0 +1,107 @@
+table acumulado_abril_CL
+	lineageTag: 1b5d6579-6f13-438a-940b-39a218e030ef
+
+	column Categoría
+		dataType: string
+		lineageTag: 740bc830-f9bf-4cea-b282-af835a5846c4
+		summarizeBy: none
+		sourceColumn: [Categoría]
+
+		annotation SummarizationSetBy = User
+
+	column 'PPTO 2026'
+		dataType: double
+		lineageTag: 5d86a01a-b7b0-472b-8f09-8d938c4bdd85
+		summarizeBy: sum
+		sourceColumn: [PPTO 2026]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'REAL 2026'
+		dataType: double
+		lineageTag: fcd1a67d-0b1c-4b16-8aed-8f3613096244
+		summarizeBy: sum
+		sourceColumn: [REAL 2026]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition acumulado_abril_CL = calculated
+		mode: import
+		source =
+				VAR FechaCorte = DATE(2026, 4, 30)
+				VAR Categorias =
+					DATATABLE(
+						"Categoría", STRING,
+						{
+							{"Capex"},
+							{"Opex"},
+							{"Eccsa"}
+						}
+					)
+				RETURN
+					ADDCOLUMNS(
+						Categorias,
+						"PPTO 2026",
+							VAR CategoriaActual = [Categoría]
+							RETURN
+								CALCULATE(
+									SUM('consulta_base'[PPTO 26 Aprobado MO]),
+									FILTER(
+										'consulta_base',
+										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+										VAR EsBancoRipleyKyndryl =
+											SegmentoNormalizado = "banco ripley"
+												&& CONTAINSSTRING(LOWER(COALESCE('consulta_base'[Proveedor], "")), "kyndryl")
+										RETURN
+											LOWER(TRIM(COALESCE('consulta_base'[País], ""))) = "chile"
+												&& YEAR('consulta_base'[Mes/ Año]) = 2026
+												&& 'consulta_base'[Mes/ Año] <= FechaCorte
+												&& SWITCH(
+													CategoriaActual,
+													"Capex",
+														LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "capex"
+															&& NOT EsBancoRipleyKyndryl,
+													"Opex",
+														LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "opex"
+															&& NOT EsBancoRipleyKyndryl,
+													"Eccsa",
+														EsBancoRipleyKyndryl,
+													FALSE()
+												)
+									)
+								),
+						"REAL 2026",
+							VAR CategoriaActual = [Categoría]
+							RETURN
+								CALCULATE(
+									SUM('consulta_base'[2026 REAL MO]),
+									FILTER(
+										'consulta_base',
+										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+										VAR EsBancoRipleyKyndryl =
+											SegmentoNormalizado = "banco ripley"
+												&& CONTAINSSTRING(LOWER(COALESCE('consulta_base'[Proveedor], "")), "kyndryl")
+										RETURN
+											LOWER(TRIM(COALESCE('consulta_base'[País], ""))) = "chile"
+												&& YEAR('consulta_base'[Mes/ Año]) = 2026
+												&& 'consulta_base'[Mes/ Año] <= FechaCorte
+												&& SWITCH(
+													CategoriaActual,
+													"Capex",
+														LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "capex"
+															&& NOT EsBancoRipleyKyndryl,
+													"Opex",
+														LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "opex"
+															&& NOT EsBancoRipleyKyndryl,
+													"Eccsa",
+														EsBancoRipleyKyndryl,
+													FALSE()
+												)
+									)
+								)
+					)
+

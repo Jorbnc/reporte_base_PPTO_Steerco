@@ -1,0 +1,92 @@
+table acumulado_abril_financiero
+	lineageTag: b9a8ef32-5143-4126-a9e7-a81fbeb3922f
+
+	column Categoría
+		dataType: string
+		lineageTag: 67e9927b-ab0d-4280-9ead-a56df86283e8
+		summarizeBy: none
+		sourceColumn: [Categoría]
+
+		annotation SummarizationSetBy = User
+
+	column 'LB BC 26'
+		dataType: double
+		lineageTag: d42fe701-87e6-4950-b56b-b4e4125e4d23
+		summarizeBy: sum
+		sourceColumn: [LB BC 26]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'FCST 2026'
+		dataType: double
+		lineageTag: c1440821-6cc6-475a-9914-365a01df2af9
+		summarizeBy: sum
+		sourceColumn: [FCST 2026]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition acumulado_abril_financiero = calculated
+		mode: import
+		source =
+				VAR FechaCorte = DATE(2026, 4, 30)
+				VAR Categorias =
+					DATATABLE(
+						"Categoría", STRING,
+						{
+							{"Financiero"},
+							{"Eccsa"}
+						}
+					)
+				RETURN
+					ADDCOLUMNS(
+						Categorias,
+						"LB BC 26",
+							VAR CategoriaActual = [Categoría]
+							RETURN
+								CALCULATE(
+									SUM('consulta_base'[2026LB CLP]),
+									FILTER(
+										'consulta_base',
+										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+										RETURN
+											YEAR('consulta_base'[Mes/ Año]) = 2026
+												&& 'consulta_base'[Mes/ Año] <= FechaCorte
+												&& SWITCH(
+													CategoriaActual,
+													"Financiero",
+														SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"},
+													"Eccsa",
+														SegmentoNormalizado = "banco ripley"
+															&& CONTAINSSTRING(LOWER(COALESCE('consulta_base'[Proveedor], "")), "kyndryl"),
+													FALSE()
+												)
+									)
+								),
+						"FCST 2026",
+							VAR CategoriaActual = [Categoría]
+							RETURN
+								CALCULATE(
+									SUM('consulta_base'[2026 FCST CLP]),
+									FILTER(
+										'consulta_base',
+										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+										RETURN
+											YEAR('consulta_base'[Mes/ Año]) = 2026
+												&& 'consulta_base'[Mes/ Año] <= FechaCorte
+												&& SWITCH(
+													CategoriaActual,
+													"Financiero",
+														SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"},
+													"Eccsa",
+														SegmentoNormalizado = "banco ripley"
+															&& CONTAINSSTRING(LOWER(COALESCE('consulta_base'[Proveedor], "")), "kyndryl"),
+													FALSE()
+												)
+									)
+								)
+					)
+
