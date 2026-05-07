@@ -1,6 +1,94 @@
 table consulta_base
 	lineageTag: 532c6af5-c767-40ce-bce4-f0005aa52559
 
+	measure 'PPTO 2026 Base Acum' =
+			VAR MesOrden = SELECTEDVALUE('acumulado_CL_PE'[Mes Orden])
+			VAR FechaCorte =
+				IF(
+					NOT ISBLANK(MesOrden),
+					EOMONTH(DATE(2026, MesOrden, 1), 0)
+				)
+			RETURN
+				IF(
+					ISBLANK(MesOrden),
+					BLANK(),
+					CALCULATE(
+						SUM('consulta_base'[PPTO 26 Aprobado MO]),
+						FILTER(
+							ALL('consulta_base'),
+							YEAR('consulta_base'[Mes/ Año]) = 2026
+								&& 'consulta_base'[Mes/ Año] <= FechaCorte
+						)
+					)
+				)
+		formatString: 0
+		lineageTag: 4ab693b3-ade1-43db-b2b3-f4493d8afe13
+
+	measure 'PPTO 2026 Tabla Acum' =
+			VAR MesOrden = SELECTEDVALUE('acumulado_CL_PE'[Mes Orden])
+			RETURN
+				IF(
+					ISBLANK(MesOrden),
+					BLANK(),
+					CALCULATE(
+						SUM('acumulado_CL_PE'[PPTO 2026]),
+						FILTER(
+							ALL('acumulado_CL_PE'),
+							'acumulado_CL_PE'[Mes Orden] = MesOrden
+						)
+					)
+				)
+		formatString: 0
+		lineageTag: e826866a-8c68-4929-8e28-80b82d4630a4
+
+	measure 'PPTO 2026 Diferencia Control' = [PPTO 2026 Base Acum] - [PPTO 2026 Tabla Acum]
+		formatString: 0
+		lineageTag: d8bb56aa-e52a-4584-bf5c-d10874544861
+
+	measure 'REAL 2026 Base Acum' =
+			VAR MesOrden = SELECTEDVALUE('acumulado_CL_PE'[Mes Orden])
+			VAR FechaCorte =
+				IF(
+					NOT ISBLANK(MesOrden),
+					EOMONTH(DATE(2026, MesOrden, 1), 0)
+				)
+			RETURN
+				IF(
+					ISBLANK(MesOrden),
+					BLANK(),
+					CALCULATE(
+						SUM('consulta_base'[2026 REAL MO]),
+						FILTER(
+							ALL('consulta_base'),
+							YEAR('consulta_base'[Mes/ Año]) = 2026
+								&& 'consulta_base'[Mes/ Año] <= FechaCorte
+						)
+					)
+				)
+		formatString: 0
+		lineageTag: ffb6a96e-389b-4ae2-b1a5-1167a8c468dc
+
+	measure 'REAL 2026 Tabla Acum' =
+			VAR MesOrden = SELECTEDVALUE('acumulado_CL_PE'[Mes Orden])
+			RETURN
+				IF(
+					ISBLANK(MesOrden),
+					BLANK(),
+					CALCULATE(
+						SUM('acumulado_CL_PE'[REAL 2026]),
+						FILTER(
+							ALL('acumulado_CL_PE'),
+							'acumulado_CL_PE'[Mes Orden] = MesOrden
+						)
+					)
+				)
+		formatString: 0
+		lineageTag: 9ce317c9-f267-4c4c-847e-894203f371ca
+
+	measure 'REAL 2026 Diferencia Control' = [REAL 2026 Base Acum] - [REAL 2026 Tabla Acum]
+		formatString: 0
+		lineageTag: 2e8bd71a-1ae0-4221-b8c3-4503ab935c49
+
 	column País
 		dataType: string
 		lineageTag: 0c8cb76a-8f88-49cc-bf51-9c242dc1f785
@@ -226,4 +314,3 @@ table consulta_base
 	annotation PBI_NavigationStepName = Navegación
 
 	annotation PBI_ResultType = Table
-
