@@ -1,0 +1,157 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "chartfinabrilcl",
+  "position": {
+    "x": 444,
+    "y": 374,
+    "z": 1400,
+    "height": 290,
+    "width": 392,
+    "tabOrder": 1400
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "visual_acumulado_abril_financiero_CL"
+                    }
+                  },
+                  "Property": "Métrica"
+                }
+              },
+              "queryRef": "visual_acumulado_abril_financiero_CL.Métrica",
+              "nativeQueryRef": "Métrica",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "visual_acumulado_abril_financiero_CL"
+                    }
+                  },
+                  "Property": "Categoría"
+                }
+              },
+              "queryRef": "visual_acumulado_abril_financiero_CL.Categoría",
+              "nativeQueryRef": "Categoría",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "visual_acumulado_abril_financiero_CL"
+                    }
+                  },
+                  "Property": "Monto Total"
+                }
+              },
+              "queryRef": "visual_acumulado_abril_financiero_CL.Monto Total",
+              "nativeQueryRef": "Monto Total"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "visual_acumulado_abril_financiero_CL"
+                  }
+                },
+                "Property": "Métrica"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Abril financiero CL'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

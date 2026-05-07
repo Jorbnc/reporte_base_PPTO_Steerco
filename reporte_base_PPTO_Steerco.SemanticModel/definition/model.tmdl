@@ -20,6 +20,12 @@ ref table acumulado_abril_PE
 ref table acumulado_abril_financiero
 ref table acumulado_abril_financiero_CL
 ref table acumulado_abril_financiero_PE
+ref table visual_acumulado_abril
+ref table visual_acumulado_abril_CL
+ref table visual_acumulado_abril_PE
+ref table visual_acumulado_abril_financiero
+ref table visual_acumulado_abril_financiero_CL
+ref table visual_acumulado_abril_financiero_PE
 ref table DateTableTemplate_599cd7b8-0702-42df-8675-f9dd1e16ae05
 ref table LocalDateTable_73faddd3-3d2d-43a8-b2a6-e6bb10e0aca5
 

@@ -6,6 +6,17 @@ table acumulado_abril_PE
 		lineageTag: 4885588a-87d7-42f9-a1dd-1ee21dfe0d0d
 		summarizeBy: none
 		sourceColumn: [Categoría]
+		sortByColumn: 'Categoría Orden'
+
+		annotation SummarizationSetBy = User
+
+	column 'Categoría Orden'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c7069b36-28eb-4b7f-a40f-5d50a306ea59
+		summarizeBy: none
+		sourceColumn: [Categoría Orden]
 
 		annotation SummarizationSetBy = User
 
@@ -45,6 +56,7 @@ table acumulado_abril_PE
 				RETURN
 					ADDCOLUMNS(
 						Categorias,
+						"Categoría Orden", SWITCH([Categoría], "Capex", 1, "Opex", 2, "Eccsa", 3),
 						"PPTO 2026",
 							VAR CategoriaActual = [Categoría]
 							RETURN
@@ -106,4 +118,3 @@ table acumulado_abril_PE
 									)
 								)
 					)
-

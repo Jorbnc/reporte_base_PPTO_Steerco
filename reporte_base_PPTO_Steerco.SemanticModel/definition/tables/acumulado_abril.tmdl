@@ -6,6 +6,17 @@ table acumulado_abril
 		lineageTag: 1d33f9fd-8a71-44f2-b3a0-2c311ae69892
 		summarizeBy: none
 		sourceColumn: [Categoría]
+		sortByColumn: 'Categoría Orden'
+
+		annotation SummarizationSetBy = User
+
+	column 'Categoría Orden'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6908ae00-689b-4d14-9462-5d5de9646fb4
+		summarizeBy: none
+		sourceColumn: [Categoría Orden]
 
 		annotation SummarizationSetBy = User
 
@@ -35,7 +46,7 @@ table acumulado_abril
 				SELECTCOLUMNS(
 					FILTER('acumulado_hasta_abril', 'acumulado_hasta_abril'[Mes Orden] = 4),
 					"Categoría", 'acumulado_hasta_abril'[Categoría],
+					"Categoría Orden", 'acumulado_hasta_abril'[Categoría Orden],
 					"PPTO 2026", 'acumulado_hasta_abril'[PPTO 2026],
 					"REAL 2026", 'acumulado_hasta_abril'[REAL 2026]
 				)
-

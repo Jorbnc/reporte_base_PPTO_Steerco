@@ -6,6 +6,17 @@ table acumulado_abril_financiero
 		lineageTag: 67e9927b-ab0d-4280-9ead-a56df86283e8
 		summarizeBy: none
 		sourceColumn: [Categoría]
+		sortByColumn: 'Categoría Orden'
+
+		annotation SummarizationSetBy = User
+
+	column 'Categoría Orden'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: edfe3fde-7717-4ab1-b318-bc792f2d2489
+		summarizeBy: none
+		sourceColumn: [Categoría Orden]
 
 		annotation SummarizationSetBy = User
 
@@ -44,6 +55,7 @@ table acumulado_abril_financiero
 				RETURN
 					ADDCOLUMNS(
 						Categorias,
+						"Categoría Orden", SWITCH([Categoría], "Financiero", 1, "Eccsa", 2),
 						"LB BC 26",
 							VAR CategoriaActual = [Categoría]
 							RETURN
@@ -89,4 +101,3 @@ table acumulado_abril_financiero
 									)
 								)
 					)
-

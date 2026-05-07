@@ -1,0 +1,78 @@
+table visual_acumulado_abril_CL
+	isHidden
+	lineageTag: 1b338013-e39c-43f6-8f42-4792a0282ad0
+
+	measure 'Monto Total' = SUM('visual_acumulado_abril_CL'[Monto])
+		formatString: 0
+		lineageTag: c77d0359-b54a-411e-8ad0-390a9989b261
+
+	column 'Métrica Orden'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fcbeb25d-55c5-4922-b924-fae42b6a57a9
+		summarizeBy: none
+		sourceColumn: [Métrica Orden]
+
+		annotation SummarizationSetBy = User
+
+	column Métrica
+		dataType: string
+		lineageTag: 147db0ea-130d-4b1a-a378-8cfab2f412a3
+		summarizeBy: none
+		sourceColumn: [Métrica]
+		sortByColumn: 'Métrica Orden'
+
+		annotation SummarizationSetBy = User
+
+	column 'Categoría Orden'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f3b75ffe-ef57-4ed8-b8db-0c12c766dce2
+		summarizeBy: none
+		sourceColumn: [Categoría Orden]
+
+		annotation SummarizationSetBy = User
+
+	column Categoría
+		dataType: string
+		lineageTag: e54cefa6-854b-472b-9799-2e59cdd708cf
+		summarizeBy: none
+		sourceColumn: [Categoría]
+		sortByColumn: 'Categoría Orden'
+
+		annotation SummarizationSetBy = User
+
+	column Monto
+		dataType: double
+		lineageTag: 5deead50-f11d-412c-988d-e4b6eccbdead
+		summarizeBy: sum
+		sourceColumn: [Monto]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition visual_acumulado_abril_CL = calculated
+		mode: import
+		source =
+				UNION(
+					SELECTCOLUMNS(
+						'acumulado_abril_CL',
+						"Métrica Orden", 1,
+						"Métrica", "PPTO 26",
+						"Categoría Orden", SWITCH('acumulado_abril_CL'[Categoría], "Capex", 1, "Opex", 2, "Eccsa", 3),
+						"Categoría", 'acumulado_abril_CL'[Categoría],
+						"Monto", 'acumulado_abril_CL'[PPTO 2026]
+					),
+					SELECTCOLUMNS(
+						'acumulado_abril_CL',
+						"Métrica Orden", 2,
+						"Métrica", "REAL 26",
+						"Categoría Orden", SWITCH('acumulado_abril_CL'[Categoría], "Capex", 1, "Opex", 2, "Eccsa", 3),
+						"Categoría", 'acumulado_abril_CL'[Categoría],
+						"Monto", 'acumulado_abril_CL'[REAL 2026]
+					)
+				)
+

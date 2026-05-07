@@ -1,0 +1,78 @@
+table visual_acumulado_abril_financiero_PE
+	isHidden
+	lineageTag: f15c02e7-8fb5-48ac-aa22-5dcaf4f03686
+
+	measure 'Monto Total' = SUM('visual_acumulado_abril_financiero_PE'[Monto])
+		formatString: 0
+		lineageTag: 54334cca-d66d-434a-bb77-ccfe102d77a2
+
+	column 'Métrica Orden'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d28705f4-0f68-4833-9c45-08a97479674d
+		summarizeBy: none
+		sourceColumn: [Métrica Orden]
+
+		annotation SummarizationSetBy = User
+
+	column Métrica
+		dataType: string
+		lineageTag: 844059b2-63cd-4402-9d03-feb95cf77803
+		summarizeBy: none
+		sourceColumn: [Métrica]
+		sortByColumn: 'Métrica Orden'
+
+		annotation SummarizationSetBy = User
+
+	column 'Categoría Orden'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9f6bc61e-548e-4bca-9613-b65386a9901e
+		summarizeBy: none
+		sourceColumn: [Categoría Orden]
+
+		annotation SummarizationSetBy = User
+
+	column Categoría
+		dataType: string
+		lineageTag: e482e205-ff16-4259-babd-adc9137ac811
+		summarizeBy: none
+		sourceColumn: [Categoría]
+		sortByColumn: 'Categoría Orden'
+
+		annotation SummarizationSetBy = User
+
+	column Monto
+		dataType: double
+		lineageTag: 54797e51-164d-4de9-92e9-9469ad8341e7
+		summarizeBy: sum
+		sourceColumn: [Monto]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition visual_acumulado_abril_financiero_PE = calculated
+		mode: import
+		source =
+				UNION(
+					SELECTCOLUMNS(
+						'acumulado_abril_financiero_PE',
+						"Métrica Orden", 1,
+						"Métrica", "LB BC 26",
+						"Categoría Orden", SWITCH('acumulado_abril_financiero_PE'[Categoría], "Financiero", 1, "Eccsa", 2),
+						"Categoría", 'acumulado_abril_financiero_PE'[Categoría],
+						"Monto", 'acumulado_abril_financiero_PE'[LB BC 26]
+					),
+					SELECTCOLUMNS(
+						'acumulado_abril_financiero_PE',
+						"Métrica Orden", 2,
+						"Métrica", "FCST 26",
+						"Categoría Orden", SWITCH('acumulado_abril_financiero_PE'[Categoría], "Financiero", 1, "Eccsa", 2),
+						"Categoría", 'acumulado_abril_financiero_PE'[Categoría],
+						"Monto", 'acumulado_abril_financiero_PE'[FCST 2026]
+					)
+				)
+

@@ -1,0 +1,78 @@
+table visual_acumulado_abril
+	isHidden
+	lineageTag: 8744f19b-ad96-4643-97ca-4c3665a2cb89
+
+	measure 'Monto Total' = SUM('visual_acumulado_abril'[Monto])
+		formatString: 0
+		lineageTag: b5588efd-837f-466e-b11e-22e8ffdc2a08
+
+	column 'Métrica Orden'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 73fcdbfb-4d78-4913-b948-f5e9e899270a
+		summarizeBy: none
+		sourceColumn: [Métrica Orden]
+
+		annotation SummarizationSetBy = User
+
+	column Métrica
+		dataType: string
+		lineageTag: 948af633-3cbe-4173-ad29-222e65b9c26a
+		summarizeBy: none
+		sourceColumn: [Métrica]
+		sortByColumn: 'Métrica Orden'
+
+		annotation SummarizationSetBy = User
+
+	column 'Categoría Orden'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9508b6a7-0f8f-4450-a811-8f4e90d928bb
+		summarizeBy: none
+		sourceColumn: [Categoría Orden]
+
+		annotation SummarizationSetBy = User
+
+	column Categoría
+		dataType: string
+		lineageTag: 70c905a4-2910-4cb1-a9e2-848c6527a828
+		summarizeBy: none
+		sourceColumn: [Categoría]
+		sortByColumn: 'Categoría Orden'
+
+		annotation SummarizationSetBy = User
+
+	column Monto
+		dataType: double
+		lineageTag: e8c9f19f-00a3-4d8b-8172-1c1e794271b4
+		summarizeBy: sum
+		sourceColumn: [Monto]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition visual_acumulado_abril = calculated
+		mode: import
+		source =
+				UNION(
+					SELECTCOLUMNS(
+						'acumulado_abril',
+						"Métrica Orden", 1,
+						"Métrica", "PPTO 26",
+						"Categoría Orden", SWITCH('acumulado_abril'[Categoría], "Capex", 1, "Opex", 2, "Eccsa", 3),
+						"Categoría", 'acumulado_abril'[Categoría],
+						"Monto", 'acumulado_abril'[PPTO 2026]
+					),
+					SELECTCOLUMNS(
+						'acumulado_abril',
+						"Métrica Orden", 2,
+						"Métrica", "REAL 26",
+						"Categoría Orden", SWITCH('acumulado_abril'[Categoría], "Capex", 1, "Opex", 2, "Eccsa", 3),
+						"Categoría", 'acumulado_abril'[Categoría],
+						"Monto", 'acumulado_abril'[REAL 2026]
+					)
+				)
+
