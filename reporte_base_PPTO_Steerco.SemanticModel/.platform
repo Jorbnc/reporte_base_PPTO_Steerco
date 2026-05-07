@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "reporte_base_PPTO_Steerco"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "fa5a9c6f-96d6-46e2-b2f9-b5a8933153bf"
+  }
+}

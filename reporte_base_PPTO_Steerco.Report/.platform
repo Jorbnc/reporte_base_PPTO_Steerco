@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "reporte_base_PPTO_Steerco"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "72acb624-1ae0-4ab5-9b06-1ddc8241e070"
+  }
+}

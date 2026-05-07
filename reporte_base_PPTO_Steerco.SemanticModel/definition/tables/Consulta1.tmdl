@@ -1,0 +1,205 @@
+table Consulta1
+	lineageTag: 462774f3-624f-4ef1-b5ac-054ccbb771fb
+
+	column País
+		dataType: string
+		lineageTag: b3e26b88-6fe2-41c9-a428-b23eaaaf6e31
+		summarizeBy: none
+		sourceColumn: País
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Segmento '
+		dataType: string
+		lineageTag: 343590ef-5157-44c0-9746-6925476ab965
+		summarizeBy: none
+		sourceColumn: "Segmento "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Categoría Comité'
+		dataType: string
+		lineageTag: 65557507-9831-496b-bef2-9ffae27db3fb
+		summarizeBy: none
+		sourceColumn: Categoría Comité
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Direccionable Nuevo'
+		dataType: string
+		lineageTag: 3cac5fd3-228e-4802-8e82-29407229440a
+		summarizeBy: none
+		sourceColumn: Direccionable Nuevo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Perimetro
+		dataType: string
+		lineageTag: 2181c794-e1c6-4db0-9429-109c9efe957a
+		summarizeBy: none
+		sourceColumn: Perimetro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'AMS/ IMS'
+		dataType: string
+		lineageTag: 6a7a53f4-f4d4-44ca-afaf-82e90f9402c5
+		summarizeBy: none
+		sourceColumn: AMS/ IMS
+
+		annotation SummarizationSetBy = Automatic
+
+	column Torre
+		dataType: string
+		lineageTag: 730fcd0f-d740-4d48-af98-e84e69d6c120
+		summarizeBy: none
+		sourceColumn: Torre
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gerencia 1° Linea'
+		dataType: string
+		lineageTag: 5861bb69-5e52-4e72-b570-99586445d5aa
+		summarizeBy: none
+		sourceColumn: Gerencia 1° Linea
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gerencia 2° Linea'
+		dataType: string
+		lineageTag: d7fe649f-f098-4371-ab74-8fd3a6513347
+		summarizeBy: none
+		sourceColumn: Gerencia 2° Linea
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de Gasto'
+		dataType: string
+		lineageTag: 1c0840be-f0b5-4c19-bf9c-bf5a20bc5e32
+		summarizeBy: none
+		sourceColumn: Tipo de Gasto
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Moneda Contrato'
+		dataType: string
+		lineageTag: a7d50e08-76a1-4663-9b38-16dfef191024
+		summarizeBy: none
+		sourceColumn: Moneda Contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mes/ Año'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d45247d3-7e21-415a-a6ee-937a788873a9
+		summarizeBy: none
+		sourceColumn: Mes/ Año
+
+		variation Variación
+			isDefault
+			relationship: 9cc53c32-fa98-458f-b84b-cf4f54d0128c
+			defaultHierarchy: LocalDateTable_18a70d06-10fc-4144-bfd0-7ebb84c749fb.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column '2025 REAL MO'
+		dataType: int64
+		formatString: 0
+		lineageTag: e328fd5d-8891-4433-8296-c37f965582f1
+		summarizeBy: sum
+		sourceColumn: 2025 REAL MO
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2026 FCST MO'
+		dataType: int64
+		formatString: 0
+		lineageTag: dd1c18fb-1f16-4ab8-ac62-8b917b3d0dc3
+		summarizeBy: sum
+		sourceColumn: 2026 FCST MO
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2026 REAL MO'
+		dataType: string
+		lineageTag: cc96bb48-fe1f-431d-9695-183372ca34ea
+		summarizeBy: none
+		sourceColumn: 2026 REAL MO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PPTO 26 Aprobado MO'
+		dataType: string
+		lineageTag: 4a8cf609-69cc-423b-b834-6a900a746230
+		summarizeBy: none
+		sourceColumn: PPTO 26 Aprobado MO
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2025 REAL  CLP'
+		dataType: int64
+		formatString: 0
+		lineageTag: e70e69e5-901f-49a8-964e-355af63a9ab7
+		summarizeBy: sum
+		sourceColumn: 2025 REAL  CLP
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2026LB CLP'
+		dataType: string
+		lineageTag: 9ee8b8cd-97fe-4365-8363-337df0c32f8b
+		summarizeBy: none
+		sourceColumn: 2026LB CLP
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2026 FCST CLP'
+		dataType: int64
+		formatString: 0
+		lineageTag: 47bee431-bee2-42c7-800c-9307da2e140a
+		summarizeBy: sum
+		sourceColumn: 2026 FCST CLP
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2026 REAL CLP'
+		dataType: string
+		lineageTag: 7b09c466-b607-4c0b-a3eb-9be21d9e08f5
+		summarizeBy: none
+		sourceColumn: 2026 REAL CLP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PPTO 26 Aprobado CLP'
+		dataType: string
+		lineageTag: 736b1a94-7380-4872-8c1f-092aedb4b163
+		summarizeBy: none
+		sourceColumn: PPTO 26 Aprobado CLP
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Consulta1 = m
+		mode: import
+		source =
+				let
+				    Origen = SharePoint.Files("https://ripleycorp-my.sharepoint.com/personal/jnunezca_bancoripley_com_pe/", [ApiVersion = 15]),
+				    #"Filas filtradas" = Table.SelectRows(Origen, each ([Extension] = ".xlsx")),
+				    #"Gastos Consolidados (Vistas PPTO Steerco) xlsx_https://ripleycorp-my sharepoint com/personal/jnunezca_bancoripley_com_pe/Documents/Archivos de chat de Microsoft Teams/" = #"Filas filtradas"{[Name="Gastos Consolidados (Vistas PPTO Steerco).xlsx",#"Folder Path"="https://ripleycorp-my.sharepoint.com/personal/jnunezca_bancoripley_com_pe/Documents/Archivos de chat de Microsoft Teams/"]}[Content],
+				    #"Libro de Excel importado" = Excel.Workbook(#"Gastos Consolidados (Vistas PPTO Steerco) xlsx_https://ripleycorp-my sharepoint com/personal/jnunezca_bancoripley_com_pe/Documents/Archivos de chat de Microsoft Teams/"),
+				    #"Base Banco_Sheet" = #"Libro de Excel importado"{[Item="Base Banco",Kind="Sheet"]}[Data],
+				    #"Filas superiores quitadas" = Table.Skip(#"Base Banco_Sheet",2),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(#"Filas superiores quitadas", [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"País", type text}, {"Segmento ", type text}, {"Segmento Contable", type text}, {"Cod Sociedad", Int64.Type}, {"Sociedad ", type text}, {"Categoría Comité", type text}, {"Categoría Corp", type text}, {"Direccionable Original ", type text}, {"Direccionable Nuevo", type text}, {"Perimetro", type text}, {"AMS/ IMS", type text}, {"Torre", type text}, {"Gerente Responsable ", type text}, {"TM/ PMO Responsable", type text}, {"Gerencia 1° Linea", type text}, {"Gerencia 2° Linea", type text}, {"Responsable Interno", type text}, {"Amortizado", type text}, {"Tipo de Gasto", type text}, {"Proveedor", type text}, {"Servicio", type text}, {"Cruce CDG", type text}, {"Numero Cuenta", type any}, {"Nombre Cuenta", type text}, {"Ceco", type text}, {"Gcia TI/ Otros", type text}, {"VST", type text}, {"Cód.Presupuesto", type text}, {"Cod PPTO Int", type text}, {"COD Identificador", type any}, {"Acreedor", type any}, {"Pago de Servicios", type text}, {"ID_Contrato", type text}, {"Fecha Inicio Contrato", type any}, {"Fecha Fin Contrato", type any}, {"Moneda Contrato", type text}, {"Afecta Impto.", type text}, {"Impto adi.", type text}, {"Mes/ Año", type date}, {"2025 LB MC", type text}, {"2025 PPTO MC", type number}, {"2025 REAL MC", Int64.Type}, {"2025 FCST MC", type number}, {"2026LB MC", type any}, {"2026 FCST MC", Int64.Type}, {"2026 REAL MC", type any}, {"2026 PPTO Aprobado MC", type any}, {"2025 LB MO", type any}, {"2025 PPTO MO", type number}, {"2025 REAL MO", Int64.Type}, {"2025 FCST MO", type number}, {"2026LB MO", type any}, {"2026 FCST MO", Int64.Type}, {"2026 REAL MO", type any}, {"PPTO 26 Aprobado MO", type any}, {"VB MO", type text}, {"2025 LB USD", type any}, {"2025 PPTO USD", type number}, {"2025 REAL USD", type number}, {"2025 FCST USD", type number}, {"2026LB USD", type text}, {"2026 FCST USD", Int64.Type}, {"2026 REAL USD", type any}, {"PPTO 26 Aprobado USD", type any}, {"2025 LB CLP", type text}, {"2025 PPTO CLP", type number}, {"2025 REAL  CLP", Int64.Type}, {"2025 FCST CLP", type number}, {"2026LB CLP", type text}, {"2026 FCST CLP", Int64.Type}, {"2026 REAL CLP", type any}, {"PPTO 26 Aprobado CLP", type text}, {"Tipo de OC planifiación", type any}, {"Comentarios", type text}, {"CRUCE", type text}}),
+				    #"Otras columnas quitadas" = Table.SelectColumns(#"Tipo cambiado",{"País", "Segmento ", "Categoría Comité", "Direccionable Nuevo", "Perimetro", "AMS/ IMS", "Torre", "Gerencia 1° Linea", "Gerencia 2° Linea", "Tipo de Gasto", "Moneda Contrato", "Mes/ Año", "2025 REAL MO", "2026 FCST MO", "2026 REAL MO", "PPTO 26 Aprobado MO", "2025 REAL  CLP", "2026LB CLP", "2026 FCST CLP", "2026 REAL CLP", "PPTO 26 Aprobado CLP"}),
+				    #"Errores reemplazados" = Table.ReplaceErrorValues(#"Otras columnas quitadas", {{"Categoría Comité", null}}),
+				    #"Filas en blanco eliminadas" = Table.SelectRows(#"Errores reemplazados", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+				in
+				    #"Filas en blanco eliminadas"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
