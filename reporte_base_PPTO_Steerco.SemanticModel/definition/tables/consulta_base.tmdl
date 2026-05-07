@@ -1,9 +1,9 @@
-table Consulta1
-	lineageTag: 462774f3-624f-4ef1-b5ac-054ccbb771fb
+table consulta_base
+	lineageTag: 532c6af5-c767-40ce-bce4-f0005aa52559
 
 	column País
 		dataType: string
-		lineageTag: b3e26b88-6fe2-41c9-a428-b23eaaaf6e31
+		lineageTag: 0c8cb76a-8f88-49cc-bf51-9c242dc1f785
 		summarizeBy: none
 		sourceColumn: País
 
@@ -11,7 +11,7 @@ table Consulta1
 
 	column 'Segmento '
 		dataType: string
-		lineageTag: 343590ef-5157-44c0-9746-6925476ab965
+		lineageTag: 119ed56b-f4e1-4442-a3aa-002e1883735e
 		summarizeBy: none
 		sourceColumn: "Segmento "
 
@@ -19,7 +19,7 @@ table Consulta1
 
 	column 'Categoría Comité'
 		dataType: string
-		lineageTag: 65557507-9831-496b-bef2-9ffae27db3fb
+		lineageTag: fb8f7ecb-501d-438d-ad83-60186a88efe3
 		summarizeBy: none
 		sourceColumn: Categoría Comité
 
@@ -27,7 +27,7 @@ table Consulta1
 
 	column 'Direccionable Nuevo'
 		dataType: string
-		lineageTag: 3cac5fd3-228e-4802-8e82-29407229440a
+		lineageTag: 329b991d-1403-4b9b-8b20-5ceba8dddbbc
 		summarizeBy: none
 		sourceColumn: Direccionable Nuevo
 
@@ -35,7 +35,7 @@ table Consulta1
 
 	column Perimetro
 		dataType: string
-		lineageTag: 2181c794-e1c6-4db0-9429-109c9efe957a
+		lineageTag: 7de0d9e5-7557-4e17-8270-801127084be2
 		summarizeBy: none
 		sourceColumn: Perimetro
 
@@ -43,7 +43,7 @@ table Consulta1
 
 	column 'AMS/ IMS'
 		dataType: string
-		lineageTag: 6a7a53f4-f4d4-44ca-afaf-82e90f9402c5
+		lineageTag: a2d9ec20-d6f2-49a8-8083-98ea4eeee2ef
 		summarizeBy: none
 		sourceColumn: AMS/ IMS
 
@@ -51,7 +51,7 @@ table Consulta1
 
 	column Torre
 		dataType: string
-		lineageTag: 730fcd0f-d740-4d48-af98-e84e69d6c120
+		lineageTag: 872d9c42-2e69-4f9b-babb-46349716bc7c
 		summarizeBy: none
 		sourceColumn: Torre
 
@@ -59,7 +59,7 @@ table Consulta1
 
 	column 'Gerencia 1° Linea'
 		dataType: string
-		lineageTag: 5861bb69-5e52-4e72-b570-99586445d5aa
+		lineageTag: d96c9f83-fc03-47a3-98d0-8ee5be4df7b1
 		summarizeBy: none
 		sourceColumn: Gerencia 1° Linea
 
@@ -67,23 +67,23 @@ table Consulta1
 
 	column 'Gerencia 2° Linea'
 		dataType: string
-		lineageTag: d7fe649f-f098-4371-ab74-8fd3a6513347
+		lineageTag: ec70af17-a65e-48f7-b621-53a81cfdf619
 		summarizeBy: none
 		sourceColumn: Gerencia 2° Linea
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Tipo de Gasto'
+	column Proveedor
 		dataType: string
-		lineageTag: 1c0840be-f0b5-4c19-bf9c-bf5a20bc5e32
+		lineageTag: 86498abd-0952-4634-af59-0e6d1be204eb
 		summarizeBy: none
-		sourceColumn: Tipo de Gasto
+		sourceColumn: Proveedor
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Moneda Contrato'
 		dataType: string
-		lineageTag: a7d50e08-76a1-4663-9b38-16dfef191024
+		lineageTag: 4c5f8792-d1d3-4c6a-969b-95135a75edc6
 		summarizeBy: none
 		sourceColumn: Moneda Contrato
 
@@ -92,96 +92,110 @@ table Consulta1
 	column 'Mes/ Año'
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: d45247d3-7e21-415a-a6ee-937a788873a9
+		lineageTag: d525897b-8b30-4228-863a-bd94df640c0a
 		summarizeBy: none
 		sourceColumn: Mes/ Año
 
 		variation Variación
 			isDefault
-			relationship: 9cc53c32-fa98-458f-b84b-cf4f54d0128c
-			defaultHierarchy: LocalDateTable_18a70d06-10fc-4144-bfd0-7ebb84c749fb.'Jerarquía de fechas'
+			relationship: a11a7834-b59c-4313-93d8-f00471929fc9
+			defaultHierarchy: LocalDateTable_73faddd3-3d2d-43a8-b2a6-e6bb10e0aca5.'Jerarquía de fechas'
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
 
 	column '2025 REAL MO'
-		dataType: int64
-		formatString: 0
-		lineageTag: e328fd5d-8891-4433-8296-c37f965582f1
+		dataType: double
+		lineageTag: 74f48ba7-df5a-4cf4-a3c4-2e08a3e057fc
 		summarizeBy: sum
 		sourceColumn: 2025 REAL MO
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column '2026 FCST MO'
-		dataType: int64
-		formatString: 0
-		lineageTag: dd1c18fb-1f16-4ab8-ac62-8b917b3d0dc3
+		dataType: double
+		lineageTag: d9f7cd95-a4f0-42b6-8994-b45fc6409e75
 		summarizeBy: sum
 		sourceColumn: 2026 FCST MO
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column '2026 REAL MO'
-		dataType: string
-		lineageTag: cc96bb48-fe1f-431d-9695-183372ca34ea
-		summarizeBy: none
+		dataType: double
+		lineageTag: c7476539-5b1a-43dd-80b1-13a2211aedbe
+		summarizeBy: sum
 		sourceColumn: 2026 REAL MO
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column 'PPTO 26 Aprobado MO'
-		dataType: string
-		lineageTag: 4a8cf609-69cc-423b-b834-6a900a746230
-		summarizeBy: none
+		dataType: double
+		lineageTag: cd51404c-c4d7-492f-a48b-c7a90a8a1486
+		summarizeBy: sum
 		sourceColumn: PPTO 26 Aprobado MO
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column '2025 REAL  CLP'
-		dataType: int64
-		formatString: 0
-		lineageTag: e70e69e5-901f-49a8-964e-355af63a9ab7
+		dataType: double
+		lineageTag: f1c2a37d-e6ec-4339-87d8-298b45c8a891
 		summarizeBy: sum
 		sourceColumn: 2025 REAL  CLP
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column '2026LB CLP'
-		dataType: string
-		lineageTag: 9ee8b8cd-97fe-4365-8363-337df0c32f8b
-		summarizeBy: none
+		dataType: double
+		lineageTag: 53a5155b-a442-4386-b345-40471bd56352
+		summarizeBy: sum
 		sourceColumn: 2026LB CLP
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column '2026 FCST CLP'
-		dataType: int64
-		formatString: 0
-		lineageTag: 47bee431-bee2-42c7-800c-9307da2e140a
+		dataType: double
+		lineageTag: 86ea1069-2e03-4570-a53c-8966d284258e
 		summarizeBy: sum
 		sourceColumn: 2026 FCST CLP
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column '2026 REAL CLP'
-		dataType: string
-		lineageTag: 7b09c466-b607-4c0b-a3eb-9be21d9e08f5
-		summarizeBy: none
+		dataType: double
+		lineageTag: c291dd7a-f97f-4111-83b8-4935e765cfba
+		summarizeBy: sum
 		sourceColumn: 2026 REAL CLP
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column 'PPTO 26 Aprobado CLP'
-		dataType: string
-		lineageTag: 736b1a94-7380-4872-8c1f-092aedb4b163
-		summarizeBy: none
+		dataType: double
+		lineageTag: 9c005828-9bd9-40f7-a0c3-13251500aaa0
+		summarizeBy: sum
 		sourceColumn: PPTO 26 Aprobado CLP
 
 		annotation SummarizationSetBy = Automatic
 
-	partition Consulta1 = m
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition consulta_base = m
 		mode: import
 		source =
 				let
@@ -193,9 +207,11 @@ table Consulta1
 				    #"Filas superiores quitadas" = Table.Skip(#"Base Banco_Sheet",2),
 				    #"Encabezados promovidos" = Table.PromoteHeaders(#"Filas superiores quitadas", [PromoteAllScalars=true]),
 				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"País", type text}, {"Segmento ", type text}, {"Segmento Contable", type text}, {"Cod Sociedad", Int64.Type}, {"Sociedad ", type text}, {"Categoría Comité", type text}, {"Categoría Corp", type text}, {"Direccionable Original ", type text}, {"Direccionable Nuevo", type text}, {"Perimetro", type text}, {"AMS/ IMS", type text}, {"Torre", type text}, {"Gerente Responsable ", type text}, {"TM/ PMO Responsable", type text}, {"Gerencia 1° Linea", type text}, {"Gerencia 2° Linea", type text}, {"Responsable Interno", type text}, {"Amortizado", type text}, {"Tipo de Gasto", type text}, {"Proveedor", type text}, {"Servicio", type text}, {"Cruce CDG", type text}, {"Numero Cuenta", type any}, {"Nombre Cuenta", type text}, {"Ceco", type text}, {"Gcia TI/ Otros", type text}, {"VST", type text}, {"Cód.Presupuesto", type text}, {"Cod PPTO Int", type text}, {"COD Identificador", type any}, {"Acreedor", type any}, {"Pago de Servicios", type text}, {"ID_Contrato", type text}, {"Fecha Inicio Contrato", type any}, {"Fecha Fin Contrato", type any}, {"Moneda Contrato", type text}, {"Afecta Impto.", type text}, {"Impto adi.", type text}, {"Mes/ Año", type date}, {"2025 LB MC", type text}, {"2025 PPTO MC", type number}, {"2025 REAL MC", Int64.Type}, {"2025 FCST MC", type number}, {"2026LB MC", type any}, {"2026 FCST MC", Int64.Type}, {"2026 REAL MC", type any}, {"2026 PPTO Aprobado MC", type any}, {"2025 LB MO", type any}, {"2025 PPTO MO", type number}, {"2025 REAL MO", Int64.Type}, {"2025 FCST MO", type number}, {"2026LB MO", type any}, {"2026 FCST MO", Int64.Type}, {"2026 REAL MO", type any}, {"PPTO 26 Aprobado MO", type any}, {"VB MO", type text}, {"2025 LB USD", type any}, {"2025 PPTO USD", type number}, {"2025 REAL USD", type number}, {"2025 FCST USD", type number}, {"2026LB USD", type text}, {"2026 FCST USD", Int64.Type}, {"2026 REAL USD", type any}, {"PPTO 26 Aprobado USD", type any}, {"2025 LB CLP", type text}, {"2025 PPTO CLP", type number}, {"2025 REAL  CLP", Int64.Type}, {"2025 FCST CLP", type number}, {"2026LB CLP", type text}, {"2026 FCST CLP", Int64.Type}, {"2026 REAL CLP", type any}, {"PPTO 26 Aprobado CLP", type text}, {"Tipo de OC planifiación", type any}, {"Comentarios", type text}, {"CRUCE", type text}}),
-				    #"Otras columnas quitadas" = Table.SelectColumns(#"Tipo cambiado",{"País", "Segmento ", "Categoría Comité", "Direccionable Nuevo", "Perimetro", "AMS/ IMS", "Torre", "Gerencia 1° Linea", "Gerencia 2° Linea", "Tipo de Gasto", "Moneda Contrato", "Mes/ Año", "2025 REAL MO", "2026 FCST MO", "2026 REAL MO", "PPTO 26 Aprobado MO", "2025 REAL  CLP", "2026LB CLP", "2026 FCST CLP", "2026 REAL CLP", "PPTO 26 Aprobado CLP"}),
+				    #"Otras columnas quitadas" = Table.SelectColumns(#"Tipo cambiado",{"País", "Segmento ", "Categoría Comité", "Direccionable Nuevo", "Perimetro", "AMS/ IMS", "Torre", "Gerencia 1° Linea", "Gerencia 2° Linea", "Proveedor", "Moneda Contrato", "Mes/ Año", "2025 REAL MO", "2026 FCST MO", "2026 REAL MO", "PPTO 26 Aprobado MO", "2025 REAL  CLP", "2026LB CLP", "2026 FCST CLP", "2026 REAL CLP", "PPTO 26 Aprobado CLP"}),
 				    #"Errores reemplazados" = Table.ReplaceErrorValues(#"Otras columnas quitadas", {{"Categoría Comité", null}}),
-				    #"Filas en blanco eliminadas" = Table.SelectRows(#"Errores reemplazados", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+				    #"Tipo cambiado1" = Table.TransformColumnTypes(#"Errores reemplazados",{{"2025 REAL MO", type number}, {"2026 FCST MO", type number}, {"2026 REAL MO", type number}, {"PPTO 26 Aprobado MO", type number}, {"2025 REAL  CLP", type number}, {"2026LB CLP", type number}, {"2026 FCST CLP", type number}, {"2026 REAL CLP", type number}, {"PPTO 26 Aprobado CLP", type number}}),
+				    #"Errores reemplazados1" = Table.ReplaceErrorValues(#"Tipo cambiado1", {{"PPTO 26 Aprobado CLP", null}}),
+				    #"Filas en blanco eliminadas" = Table.SelectRows(#"Errores reemplazados1", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
 				in
 				    #"Filas en blanco eliminadas"
 

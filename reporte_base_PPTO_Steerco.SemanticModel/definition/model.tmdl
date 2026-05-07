@@ -8,13 +8,13 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["Consulta1"]
+annotation PBI_QueryOrder = ["consulta_base"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
-ref table Consulta1
-ref table DateTableTemplate_39cd1ea5-4764-466e-ad5b-308345f306dc
-ref table LocalDateTable_18a70d06-10fc-4144-bfd0-7ebb84c749fb
+ref table consulta_base
+ref table DateTableTemplate_599cd7b8-0702-42df-8675-f9dd1e16ae05
+ref table LocalDateTable_73faddd3-3d2d-43a8-b2a6-e6bb10e0aca5
 
 ref cultureInfo es-ES
 

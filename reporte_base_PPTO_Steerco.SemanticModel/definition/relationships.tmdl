@@ -1,5 +1,5 @@
-relationship 9cc53c32-fa98-458f-b84b-cf4f54d0128c
+relationship a11a7834-b59c-4313-93d8-f00471929fc9
 	joinOnDateBehavior: datePartOnly
-	fromColumn: Consulta1.'Mes/ Año'
-	toColumn: LocalDateTable_18a70d06-10fc-4144-bfd0-7ebb84c749fb.Date
+	fromColumn: consulta_base.'Mes/ Año'
+	toColumn: LocalDateTable_73faddd3-3d2d-43a8-b2a6-e6bb10e0aca5.Date
 
