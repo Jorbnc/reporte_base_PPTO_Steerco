@@ -61,11 +61,11 @@
                       "Entity": "visual_acumulado_abril_PE"
                     }
                   },
-                  "Property": "Monto Total"
+                  "Property": "Monto Abril PE"
                 }
               },
-              "queryRef": "visual_acumulado_abril_PE.Monto Total",
-              "nativeQueryRef": "Monto Total"
+              "queryRef": "visual_acumulado_abril_PE.Monto Abril PE",
+              "nativeQueryRef": "Monto Abril PE"
             }
           ]
         }

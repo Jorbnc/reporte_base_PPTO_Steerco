@@ -61,11 +61,11 @@
                       "Entity": "visual_acumulado_abril_CL"
                     }
                   },
-                  "Property": "Monto Total"
+                  "Property": "Monto Abril CL"
                 }
               },
-              "queryRef": "visual_acumulado_abril_CL.Monto Total",
-              "nativeQueryRef": "Monto Total"
+              "queryRef": "visual_acumulado_abril_CL.Monto Abril CL",
+              "nativeQueryRef": "Monto Abril CL"
             }
           ]
         }

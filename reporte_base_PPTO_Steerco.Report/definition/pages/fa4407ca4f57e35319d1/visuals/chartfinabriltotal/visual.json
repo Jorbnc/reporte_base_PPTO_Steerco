@@ -61,11 +61,11 @@
                       "Entity": "visual_acumulado_abril_financiero"
                     }
                   },
-                  "Property": "Monto Total"
+                  "Property": "Monto Abril Financiero"
                 }
               },
-              "queryRef": "visual_acumulado_abril_financiero.Monto Total",
-              "nativeQueryRef": "Monto Total"
+              "queryRef": "visual_acumulado_abril_financiero.Monto Abril Financiero",
+              "nativeQueryRef": "Monto Abril Financiero"
             }
           ]
         }

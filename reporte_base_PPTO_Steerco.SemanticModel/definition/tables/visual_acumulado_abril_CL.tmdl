@@ -2,7 +2,7 @@ table visual_acumulado_abril_CL
 	isHidden
 	lineageTag: 1b338013-e39c-43f6-8f42-4792a0282ad0
 
-	measure 'Monto Total' = SUM('visual_acumulado_abril_CL'[Monto])
+	measure 'Monto Abril CL' = SUM('visual_acumulado_abril_CL'[Monto])
 		formatString: 0
 		lineageTag: c77d0359-b54a-411e-8ad0-390a9989b261
 
@@ -75,4 +75,3 @@ table visual_acumulado_abril_CL
 						"Monto", 'acumulado_abril_CL'[REAL 2026]
 					)
 				)
-

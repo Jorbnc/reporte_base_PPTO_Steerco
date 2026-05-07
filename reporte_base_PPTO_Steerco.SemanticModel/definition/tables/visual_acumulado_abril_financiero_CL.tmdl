@@ -2,7 +2,7 @@ table visual_acumulado_abril_financiero_CL
 	isHidden
 	lineageTag: 829b1cc8-16e9-41d8-837f-1c625b38573f
 
-	measure 'Monto Total' = SUM('visual_acumulado_abril_financiero_CL'[Monto])
+	measure 'Monto Abril Financiero CL' = SUM('visual_acumulado_abril_financiero_CL'[Monto])
 		formatString: 0
 		lineageTag: 906d1860-f0b2-4e76-8460-70a3900e8dd9
 
@@ -75,4 +75,3 @@ table visual_acumulado_abril_financiero_CL
 						"Monto", 'acumulado_abril_financiero_CL'[FCST 2026]
 					)
 				)
-
