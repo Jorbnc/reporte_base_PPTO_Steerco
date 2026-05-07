@@ -34,7 +34,8 @@ table acumulado_corte_PE
 	partition acumulado_corte_PE = calculated
 		mode: import
 		source =
-				VAR MesCorteGlobal = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
+				VAR MesCorteConfig = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
+				VAR MesCorteGlobal = MIN(12, MAX(1, MesCorteConfig))
 				VAR FechaCorte = EOMONTH(DATE(2026, MesCorteGlobal, 1), 0)
 				VAR Categorias =
 					DATATABLE(
@@ -59,6 +60,8 @@ table acumulado_corte_PE
 										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
 										VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
 										VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+										VAR EsBanco =
+											SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
 										VAR EsEccsa =
 											SegmentoNormalizado = "retail chile"
 												&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
@@ -70,10 +73,10 @@ table acumulado_corte_PE
 													CategoriaActual,
 													"Capex",
 														TipoGastoNormalizado = "capex"
-															&& NOT EsEccsa,
+															&& EsBanco,
 													"Opex",
 														TipoGastoNormalizado = "opex"
-															&& NOT EsEccsa,
+															&& EsBanco,
 													"Eccsa",
 														TipoGastoNormalizado IN {"capex", "opex"}
 															&& EsEccsa,
@@ -92,6 +95,8 @@ table acumulado_corte_PE
 										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
 										VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
 										VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+										VAR EsBanco =
+											SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
 										VAR EsEccsa =
 											SegmentoNormalizado = "retail chile"
 												&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
@@ -103,10 +108,10 @@ table acumulado_corte_PE
 													CategoriaActual,
 													"Capex",
 														TipoGastoNormalizado = "capex"
-															&& NOT EsEccsa,
+															&& EsBanco,
 													"Opex",
 														TipoGastoNormalizado = "opex"
-															&& NOT EsEccsa,
+															&& EsBanco,
 													"Eccsa",
 														TipoGastoNormalizado IN {"capex", "opex"}
 															&& EsEccsa,

@@ -16,11 +16,19 @@ table consulta_base
 						DIVIDE(SUM('consulta_base'[PPTO 26 Aprobado CLP]), 1000000000),
 						FILTER(
 							ALL('consulta_base'),
+							VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+							VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
 							VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+							VAR EsBanco =
+								SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
+							VAR EsEccsa =
+								SegmentoNormalizado = "retail chile"
+									&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
 							RETURN
 								YEAR('consulta_base'[Mes/ Año]) = 2026
 									&& 'consulta_base'[Mes/ Año] <= FechaCorte
 									&& TipoGastoNormalizado IN {"capex", "opex"}
+									&& (EsBanco || EsEccsa)
 						)
 					)
 				)
@@ -63,11 +71,19 @@ table consulta_base
 						DIVIDE(SUM('consulta_base'[2026 REAL CLP]), 1000000000),
 						FILTER(
 							ALL('consulta_base'),
+							VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
+							VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
 							VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+							VAR EsBanco =
+								SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
+							VAR EsEccsa =
+								SegmentoNormalizado = "retail chile"
+									&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
 							RETURN
 								YEAR('consulta_base'[Mes/ Año]) = 2026
 									&& 'consulta_base'[Mes/ Año] <= FechaCorte
 									&& TipoGastoNormalizado IN {"capex", "opex"}
+									&& (EsBanco || EsEccsa)
 						)
 					)
 				)

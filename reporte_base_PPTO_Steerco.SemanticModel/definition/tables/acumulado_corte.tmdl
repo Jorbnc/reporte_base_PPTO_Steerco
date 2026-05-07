@@ -34,7 +34,8 @@ table acumulado_corte
 	partition acumulado_corte = calculated
 		mode: import
 		source =
-				VAR MesCorteGlobal = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
+				VAR MesCorteConfig = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
+				VAR MesCorteGlobal = MIN(12, MAX(1, MesCorteConfig))
 				RETURN
 					SELECTCOLUMNS(
 						FILTER('acumulado_hasta_corte', 'acumulado_hasta_corte'[Mes Orden] = MesCorteGlobal),

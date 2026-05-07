@@ -52,7 +52,8 @@ table acumulado_hasta_corte
 	partition acumulado_hasta_corte = calculated
 		mode: import
 		source =
-				VAR MesCorteGlobal = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
+				VAR MesCorteConfig = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
+				VAR MesCorteGlobal = MIN(12, MAX(1, MesCorteConfig))
 				VAR Meses =
 					FILTER(
 						DATATABLE(
@@ -102,6 +103,8 @@ table acumulado_hasta_corte
 													VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
 													VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
 													VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+													VAR EsBanco =
+														SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
 													VAR EsEccsa =
 														SegmentoNormalizado = "retail chile"
 															&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
@@ -112,10 +115,10 @@ table acumulado_hasta_corte
 																CategoriaActual,
 																"Capex",
 																	TipoGastoNormalizado = "capex"
-																		&& NOT EsEccsa,
+																		&& EsBanco,
 																"Opex",
 																	TipoGastoNormalizado = "opex"
-																		&& NOT EsEccsa,
+																		&& EsBanco,
 																"Eccsa",
 																	TipoGastoNormalizado IN {"capex", "opex"}
 																		&& EsEccsa,
@@ -133,6 +136,8 @@ table acumulado_hasta_corte
 													VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
 													VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
 													VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+													VAR EsBanco =
+														SegmentoNormalizado IN {"banco chile", "banco perú", "banco peru"}
 													VAR EsEccsa =
 														SegmentoNormalizado = "retail chile"
 															&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
@@ -143,10 +148,10 @@ table acumulado_hasta_corte
 																CategoriaActual,
 																"Capex",
 																	TipoGastoNormalizado = "capex"
-																		&& NOT EsEccsa,
+																		&& EsBanco,
 																"Opex",
 																	TipoGastoNormalizado = "opex"
-																		&& NOT EsEccsa,
+																		&& EsBanco,
 																"Eccsa",
 																	TipoGastoNormalizado IN {"capex", "opex"}
 																		&& EsEccsa,
