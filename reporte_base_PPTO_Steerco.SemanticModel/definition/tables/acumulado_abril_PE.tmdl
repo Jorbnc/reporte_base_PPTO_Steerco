@@ -6,22 +6,12 @@ table acumulado_abril_PE
 		lineageTag: 4885588a-87d7-42f9-a1dd-1ee21dfe0d0d
 		summarizeBy: none
 		sourceColumn: [Categoría]
-		sortByColumn: 'Categoría Orden'
-
-		annotation SummarizationSetBy = User
-
-	column 'Categoría Orden'
-		dataType: int64
-		isHidden
-		formatString: 0
-		lineageTag: c7069b36-28eb-4b7f-a40f-5d50a306ea59
-		summarizeBy: none
-		sourceColumn: [Categoría Orden]
 
 		annotation SummarizationSetBy = User
 
 	column 'PPTO 2026'
 		dataType: double
+		formatString: 0.0
 		lineageTag: bf34f221-48cf-4f07-af36-97105e8ad3dc
 		summarizeBy: sum
 		sourceColumn: [PPTO 2026]
@@ -32,6 +22,7 @@ table acumulado_abril_PE
 
 	column 'REAL 2026'
 		dataType: double
+		formatString: 0.0
 		lineageTag: 5977cecd-29c5-4da6-a77d-762dc2688400
 		summarizeBy: sum
 		sourceColumn: [REAL 2026]
@@ -56,12 +47,11 @@ table acumulado_abril_PE
 				RETURN
 					ADDCOLUMNS(
 						Categorias,
-						"Categoría Orden", SWITCH([Categoría], "Capex", 1, "Opex", 2, "Eccsa", 3),
 						"PPTO 2026",
 							VAR CategoriaActual = [Categoría]
 							RETURN
 								CALCULATE(
-									SUM('consulta_base'[PPTO 26 Aprobado MO]),
+									DIVIDE(SUM('consulta_base'[PPTO 26 Aprobado CLP]), 1000000000),
 									FILTER(
 										'consulta_base',
 										VAR PaisNormalizado = LOWER(TRIM(COALESCE('consulta_base'[País], "")))
@@ -91,7 +81,7 @@ table acumulado_abril_PE
 							VAR CategoriaActual = [Categoría]
 							RETURN
 								CALCULATE(
-									SUM('consulta_base'[2026 REAL MO]),
+									DIVIDE(SUM('consulta_base'[2026 REAL CLP]), 1000000000),
 									FILTER(
 										'consulta_base',
 										VAR PaisNormalizado = LOWER(TRIM(COALESCE('consulta_base'[País], "")))

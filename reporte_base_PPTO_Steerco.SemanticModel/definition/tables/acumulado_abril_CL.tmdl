@@ -6,22 +6,12 @@ table acumulado_abril_CL
 		lineageTag: 740bc830-f9bf-4cea-b282-af835a5846c4
 		summarizeBy: none
 		sourceColumn: [Categoría]
-		sortByColumn: 'Categoría Orden'
-
-		annotation SummarizationSetBy = User
-
-	column 'Categoría Orden'
-		dataType: int64
-		isHidden
-		formatString: 0
-		lineageTag: 094b6ad1-f1d9-405e-861b-fa039024d4b9
-		summarizeBy: none
-		sourceColumn: [Categoría Orden]
 
 		annotation SummarizationSetBy = User
 
 	column 'PPTO 2026'
 		dataType: double
+		formatString: 0.0
 		lineageTag: 5d86a01a-b7b0-472b-8f09-8d938c4bdd85
 		summarizeBy: sum
 		sourceColumn: [PPTO 2026]
@@ -32,6 +22,7 @@ table acumulado_abril_CL
 
 	column 'REAL 2026'
 		dataType: double
+		formatString: 0.0
 		lineageTag: fcd1a67d-0b1c-4b16-8aed-8f3613096244
 		summarizeBy: sum
 		sourceColumn: [REAL 2026]
@@ -56,12 +47,11 @@ table acumulado_abril_CL
 				RETURN
 					ADDCOLUMNS(
 						Categorias,
-						"Categoría Orden", SWITCH([Categoría], "Capex", 1, "Opex", 2, "Eccsa", 3),
 						"PPTO 2026",
 							VAR CategoriaActual = [Categoría]
 							RETURN
 								CALCULATE(
-									SUM('consulta_base'[PPTO 26 Aprobado MO]),
+									DIVIDE(SUM('consulta_base'[PPTO 26 Aprobado CLP]), 1000000000),
 									FILTER(
 										'consulta_base',
 										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
@@ -90,7 +80,7 @@ table acumulado_abril_CL
 							VAR CategoriaActual = [Categoría]
 							RETURN
 								CALCULATE(
-									SUM('consulta_base'[2026 REAL MO]),
+									DIVIDE(SUM('consulta_base'[2026 REAL CLP]), 1000000000),
 									FILTER(
 										'consulta_base',
 										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))

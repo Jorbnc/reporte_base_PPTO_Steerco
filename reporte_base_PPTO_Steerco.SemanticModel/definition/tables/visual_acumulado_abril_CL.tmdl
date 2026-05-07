@@ -3,7 +3,7 @@ table visual_acumulado_abril_CL
 	lineageTag: 1b338013-e39c-43f6-8f42-4792a0282ad0
 
 	measure 'Monto Abril CL' = SUM('visual_acumulado_abril_CL'[Monto])
-		formatString: 0
+		formatString: 0.0
 		lineageTag: c77d0359-b54a-411e-8ad0-390a9989b261
 
 	column 'Métrica Orden'
@@ -46,6 +46,7 @@ table visual_acumulado_abril_CL
 
 	column Monto
 		dataType: double
+		formatString: 0.0
 		lineageTag: 5deead50-f11d-412c-988d-e4b6eccbdead
 		summarizeBy: sum
 		sourceColumn: [Monto]

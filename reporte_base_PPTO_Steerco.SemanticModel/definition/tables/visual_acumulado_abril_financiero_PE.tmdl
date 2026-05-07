@@ -3,7 +3,7 @@ table visual_acumulado_abril_financiero_PE
 	lineageTag: f15c02e7-8fb5-48ac-aa22-5dcaf4f03686
 
 	measure 'Monto Abril Financiero PE' = SUM('visual_acumulado_abril_financiero_PE'[Monto])
-		formatString: 0
+		formatString: 0.0
 		lineageTag: 54334cca-d66d-434a-bb77-ccfe102d77a2
 
 	column 'Métrica Orden'
@@ -46,6 +46,7 @@ table visual_acumulado_abril_financiero_PE
 
 	column Monto
 		dataType: double
+		formatString: 0.0
 		lineageTag: 54797e51-164d-4de9-92e9-9469ad8341e7
 		summarizeBy: sum
 		sourceColumn: [Monto]

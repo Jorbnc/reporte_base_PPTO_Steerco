@@ -24,22 +24,12 @@ table acumulado_hasta_abril
 		lineageTag: 6075d1a4-762b-4dd9-9f33-d660f0d16a7e
 		summarizeBy: none
 		sourceColumn: [Categoría]
-		sortByColumn: 'Categoría Orden'
-
-		annotation SummarizationSetBy = User
-
-	column 'Categoría Orden'
-		dataType: int64
-		isHidden
-		formatString: 0
-		lineageTag: bdd12bc9-4fa5-420b-a358-ef4704bf1a32
-		summarizeBy: none
-		sourceColumn: [Categoría Orden]
 
 		annotation SummarizationSetBy = User
 
 	column 'PPTO 2026'
 		dataType: double
+		formatString: 0.0
 		lineageTag: 467160bf-339c-4e4d-ad90-cd1df2a646f6
 		summarizeBy: sum
 		sourceColumn: [PPTO 2026]
@@ -50,6 +40,7 @@ table acumulado_hasta_abril
 
 	column 'REAL 2026'
 		dataType: double
+		formatString: 0.0
 		lineageTag: 620b8319-f250-41f4-8926-52bcb94ba554
 		summarizeBy: sum
 		sourceColumn: [REAL 2026]
@@ -89,12 +80,11 @@ table acumulado_hasta_abril
 							RETURN
 								ADDCOLUMNS(
 									Categorias,
-									"Categoría Orden", SWITCH([Categoría], "Capex", 1, "Opex", 2, "Eccsa", 3),
 									"PPTO 2026",
 										VAR CategoriaActual = [Categoría]
 										RETURN
 											CALCULATE(
-												SUM('consulta_base'[PPTO 26 Aprobado MO]),
+												DIVIDE(SUM('consulta_base'[PPTO 26 Aprobado CLP]), 1000000000),
 												FILTER(
 													'consulta_base',
 													VAR EsRetailChileKyndryl =
@@ -124,7 +114,7 @@ table acumulado_hasta_abril
 										VAR CategoriaActual = [Categoría]
 										RETURN
 											CALCULATE(
-												SUM('consulta_base'[2026 REAL MO]),
+												DIVIDE(SUM('consulta_base'[2026 REAL CLP]), 1000000000),
 												FILTER(
 													'consulta_base',
 													VAR EsRetailChileKyndryl =
@@ -155,7 +145,6 @@ table acumulado_hasta_abril
 						"Mes Orden", [Mes Orden],
 						"Mes Corte", [Mes Corte],
 						"Categoría", [Categoría],
-						"Categoría Orden", [Categoría Orden],
 						"PPTO 2026", [PPTO 2026],
 						"REAL 2026", [REAL 2026]
 					)

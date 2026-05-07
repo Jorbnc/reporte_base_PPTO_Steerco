@@ -13,7 +13,7 @@ table consulta_base
 					ISBLANK(MesOrden),
 					BLANK(),
 					CALCULATE(
-						SUM('consulta_base'[PPTO 26 Aprobado MO]),
+						DIVIDE(SUM('consulta_base'[PPTO 26 Aprobado CLP]), 1000000000),
 						FILTER(
 							ALL('consulta_base'),
 							YEAR('consulta_base'[Mes/ Año]) = 2026
@@ -21,7 +21,7 @@ table consulta_base
 						)
 					)
 				)
-		formatString: 0
+		formatString: 0.0
 		lineageTag: 4ab693b3-ade1-43db-b2b3-f4493d8afe13
 
 	measure 'PPTO 2026 Tabla Acum' =
@@ -38,11 +38,11 @@ table consulta_base
 						)
 					)
 				)
-		formatString: 0
+		formatString: 0.0
 		lineageTag: e826866a-8c68-4929-8e28-80b82d4630a4
 
 	measure 'PPTO 2026 Diferencia Control' = [PPTO 2026 Base Acum] - [PPTO 2026 Tabla Acum]
-		formatString: 0
+		formatString: 0.0
 		lineageTag: d8bb56aa-e52a-4584-bf5c-d10874544861
 
 	measure 'REAL 2026 Base Acum' =
@@ -57,7 +57,7 @@ table consulta_base
 					ISBLANK(MesOrden),
 					BLANK(),
 					CALCULATE(
-						SUM('consulta_base'[2026 REAL MO]),
+						DIVIDE(SUM('consulta_base'[2026 REAL CLP]), 1000000000),
 						FILTER(
 							ALL('consulta_base'),
 							YEAR('consulta_base'[Mes/ Año]) = 2026
@@ -65,7 +65,7 @@ table consulta_base
 						)
 					)
 				)
-		formatString: 0
+		formatString: 0.0
 		lineageTag: ffb6a96e-389b-4ae2-b1a5-1167a8c468dc
 
 	measure 'REAL 2026 Tabla Acum' =
@@ -82,11 +82,11 @@ table consulta_base
 						)
 					)
 				)
-		formatString: 0
+		formatString: 0.0
 		lineageTag: 9ce317c9-f267-4c4c-847e-894203f371ca
 
 	measure 'REAL 2026 Diferencia Control' = [REAL 2026 Base Acum] - [REAL 2026 Tabla Acum]
-		formatString: 0
+		formatString: 0.0
 		lineageTag: 2e8bd71a-1ae0-4221-b8c3-4503ab935c49
 
 	column País
