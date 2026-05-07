@@ -56,11 +56,11 @@ table acumulado_corte_CL
 									FILTER(
 										'consulta_base',
 										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
-										VAR EsRetailChilePeru =
-											SegmentoNormalizado IN {"retail chile", "retail perú", "retail peru"}
-										VAR EsRetailChileKyndryl =
+										VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
+										VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+										VAR EsEccsa =
 											SegmentoNormalizado = "retail chile"
-												&& CONTAINSSTRING(LOWER(COALESCE('consulta_base'[Proveedor], "")), "kyndryl")
+												&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
 										RETURN
 											LOWER(TRIM(COALESCE('consulta_base'[País], ""))) = "chile"
 												&& YEAR('consulta_base'[Mes/ Año]) = 2026
@@ -68,13 +68,14 @@ table acumulado_corte_CL
 												&& SWITCH(
 													CategoriaActual,
 													"Capex",
-														LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "capex"
-															&& NOT EsRetailChilePeru,
+														TipoGastoNormalizado = "capex"
+															&& NOT EsEccsa,
 													"Opex",
-														LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "opex"
-															&& NOT EsRetailChilePeru,
+														TipoGastoNormalizado = "opex"
+															&& NOT EsEccsa,
 													"Eccsa",
-														EsRetailChileKyndryl,
+														TipoGastoNormalizado IN {"capex", "opex"}
+															&& EsEccsa,
 													FALSE()
 												)
 									)
@@ -87,11 +88,11 @@ table acumulado_corte_CL
 									FILTER(
 										'consulta_base',
 										VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
-										VAR EsRetailChilePeru =
-											SegmentoNormalizado IN {"retail chile", "retail perú", "retail peru"}
-										VAR EsRetailChileKyndryl =
+										VAR ProveedorNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Proveedor], "")))
+										VAR TipoGastoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], "")))
+										VAR EsEccsa =
 											SegmentoNormalizado = "retail chile"
-												&& CONTAINSSTRING(LOWER(COALESCE('consulta_base'[Proveedor], "")), "kyndryl")
+												&& ProveedorNormalizado IN {"kyndryl spa", "kyndryl chile spa"}
 										RETURN
 											LOWER(TRIM(COALESCE('consulta_base'[País], ""))) = "chile"
 												&& YEAR('consulta_base'[Mes/ Año]) = 2026
@@ -99,13 +100,14 @@ table acumulado_corte_CL
 												&& SWITCH(
 													CategoriaActual,
 													"Capex",
-														LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "capex"
-															&& NOT EsRetailChilePeru,
+														TipoGastoNormalizado = "capex"
+															&& NOT EsEccsa,
 													"Opex",
-														LOWER(TRIM(COALESCE('consulta_base'[Tipo de Gasto], ""))) = "opex"
-															&& NOT EsRetailChilePeru,
+														TipoGastoNormalizado = "opex"
+															&& NOT EsEccsa,
 													"Eccsa",
-														EsRetailChileKyndryl,
+														TipoGastoNormalizado IN {"capex", "opex"}
+															&& EsEccsa,
 													FALSE()
 												)
 									)
