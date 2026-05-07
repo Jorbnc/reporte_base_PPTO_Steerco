@@ -1,4 +1,4 @@
-table acumulado_financiero_2026
+table cumplimiento_anual_2026_Quantum
 	lineageTag: b9a8ef32-5143-4126-a9e7-a81fbeb3922f
 
 	column Categoría
@@ -31,7 +31,7 @@ table acumulado_financiero_2026
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition acumulado_financiero_2026 = calculated
+	partition cumplimiento_anual_2026_Quantum = calculated
 		mode: import
 		source =
 				VAR Categorias =

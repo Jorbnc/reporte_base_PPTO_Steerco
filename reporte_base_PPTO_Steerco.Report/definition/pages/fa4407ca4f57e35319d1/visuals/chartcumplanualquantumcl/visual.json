@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "chartfin2026cl",
+  "name": "chartcumplanualquantumcl",
   "position": {
     "x": 444,
     "y": 374,
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_financiero_2026_CL"
+                      "Entity": "visual_cumplimiento_anual_2026_Quantum_CL"
                     }
                   },
                   "Property": "Métrica"
                 }
               },
-              "queryRef": "visual_acumulado_financiero_2026_CL.Métrica",
+              "queryRef": "visual_cumplimiento_anual_2026_Quantum_CL.Métrica",
               "nativeQueryRef": "Métrica",
               "active": true
             }
@@ -39,13 +39,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_financiero_2026_CL"
+                      "Entity": "visual_cumplimiento_anual_2026_Quantum_CL"
                     }
                   },
                   "Property": "Categoría"
                 }
               },
-              "queryRef": "visual_acumulado_financiero_2026_CL.Categoría",
+              "queryRef": "visual_cumplimiento_anual_2026_Quantum_CL.Categoría",
               "nativeQueryRef": "Categoría",
               "active": true
             }
@@ -58,14 +58,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_financiero_2026_CL"
+                      "Entity": "visual_cumplimiento_anual_2026_Quantum_CL"
                     }
                   },
-                  "Property": "Monto Financiero 2026 CL"
+                  "Property": "Monto Cumplimiento Anual 2026 Quantum CL"
                 }
               },
-              "queryRef": "visual_acumulado_financiero_2026_CL.Monto Financiero 2026 CL",
-              "nativeQueryRef": "Monto Financiero 2026 CL"
+              "queryRef": "visual_cumplimiento_anual_2026_Quantum_CL.Monto Cumplimiento Anual 2026 Quantum CL",
+              "nativeQueryRef": "Monto Cumplimiento Anual 2026 Quantum CL"
             }
           ]
         }
@@ -77,7 +77,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "visual_acumulado_financiero_2026_CL"
+                    "Entity": "visual_cumplimiento_anual_2026_Quantum_CL"
                   }
                 },
                 "Property": "Métrica"
@@ -144,7 +144,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Financiero 2026 CL'"
+                  "Value": "'Cumplimiento anual 2026 Quantum CL'"
                 }
               }
             }

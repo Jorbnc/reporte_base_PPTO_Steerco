@@ -1,8 +1,8 @@
-table visual_acumulado_corte
+table visual_cumplimiento_acumulado_2026_corte
 	isHidden
 	lineageTag: 8744f19b-ad96-4643-97ca-4c3665a2cb89
 
-	measure 'Monto Corte' = SUM('visual_acumulado_corte'[Monto])
+	measure 'Monto Cumplimiento Acumulado 2026 Corte' = SUM('visual_cumplimiento_acumulado_2026_corte'[Monto])
 		formatString: 0.0
 		lineageTag: b5588efd-837f-466e-b11e-22e8ffdc2a08
 
@@ -55,24 +55,24 @@ table visual_acumulado_corte
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition visual_acumulado_corte = calculated
+	partition visual_cumplimiento_acumulado_2026_corte = calculated
 		mode: import
 		source =
 				UNION(
 					SELECTCOLUMNS(
-						'acumulado_corte',
+						'cumplimiento_acumulado_2026_corte',
 						"Métrica Orden", 1,
 						"Métrica", "PPTO 26",
-						"Categoría Orden", SWITCH('acumulado_corte'[Categoría], "Capex", 3, "Opex", 2, "Eccsa", 1),
-						"Categoría", 'acumulado_corte'[Categoría],
-						"Monto", 'acumulado_corte'[PPTO 2026]
+						"Categoría Orden", SWITCH('cumplimiento_acumulado_2026_corte'[Categoría], "Capex", 3, "Opex", 2, "Eccsa", 1),
+						"Categoría", 'cumplimiento_acumulado_2026_corte'[Categoría],
+						"Monto", 'cumplimiento_acumulado_2026_corte'[PPTO 2026]
 					),
 					SELECTCOLUMNS(
-						'acumulado_corte',
+						'cumplimiento_acumulado_2026_corte',
 						"Métrica Orden", 2,
 						"Métrica", "REAL 26",
-						"Categoría Orden", SWITCH('acumulado_corte'[Categoría], "Capex", 3, "Opex", 2, "Eccsa", 1),
-						"Categoría", 'acumulado_corte'[Categoría],
-						"Monto", 'acumulado_corte'[REAL 2026]
+						"Categoría Orden", SWITCH('cumplimiento_acumulado_2026_corte'[Categoría], "Capex", 3, "Opex", 2, "Eccsa", 1),
+						"Categoría", 'cumplimiento_acumulado_2026_corte'[Categoría],
+						"Monto", 'cumplimiento_acumulado_2026_corte'[REAL 2026]
 					)
 				)

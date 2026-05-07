@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "chartfin2026total",
+  "name": "chartcumplacumpe",
   "position": {
-    "x": 24,
-    "y": 374,
-    "z": 1300,
+    "x": 864,
+    "y": 36,
+    "z": 1200,
     "height": 290,
     "width": 392,
-    "tabOrder": 1300
+    "tabOrder": 1200
   },
   "visual": {
     "visualType": "columnChart",
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_financiero_2026"
+                      "Entity": "visual_cumplimiento_acumulado_2026_corte_PE"
                     }
                   },
                   "Property": "Métrica"
                 }
               },
-              "queryRef": "visual_acumulado_financiero_2026.Métrica",
+              "queryRef": "visual_cumplimiento_acumulado_2026_corte_PE.Métrica",
               "nativeQueryRef": "Métrica",
               "active": true
             }
@@ -39,13 +39,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_financiero_2026"
+                      "Entity": "visual_cumplimiento_acumulado_2026_corte_PE"
                     }
                   },
                   "Property": "Categoría"
                 }
               },
-              "queryRef": "visual_acumulado_financiero_2026.Categoría",
+              "queryRef": "visual_cumplimiento_acumulado_2026_corte_PE.Categoría",
               "nativeQueryRef": "Categoría",
               "active": true
             }
@@ -58,14 +58,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_financiero_2026"
+                      "Entity": "visual_cumplimiento_acumulado_2026_corte_PE"
                     }
                   },
-                  "Property": "Monto Financiero 2026"
+                  "Property": "Monto Cumplimiento Acumulado 2026 Corte PE"
                 }
               },
-              "queryRef": "visual_acumulado_financiero_2026.Monto Financiero 2026",
-              "nativeQueryRef": "Monto Financiero 2026"
+              "queryRef": "visual_cumplimiento_acumulado_2026_corte_PE.Monto Cumplimiento Acumulado 2026 Corte PE",
+              "nativeQueryRef": "Monto Cumplimiento Acumulado 2026 Corte PE"
             }
           ]
         }
@@ -77,7 +77,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "visual_acumulado_financiero_2026"
+                    "Entity": "visual_cumplimiento_acumulado_2026_corte_PE"
                   }
                 },
                 "Property": "Métrica"
@@ -144,7 +144,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Financiero 2026'"
+                  "Value": "'Cumplimiento acumulado 2026 corte PE'"
                 }
               }
             }

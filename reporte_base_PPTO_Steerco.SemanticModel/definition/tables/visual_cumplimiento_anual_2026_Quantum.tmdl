@@ -1,8 +1,8 @@
-table visual_acumulado_financiero_2026
+table visual_cumplimiento_anual_2026_Quantum
 	isHidden
 	lineageTag: a835e28e-dad8-4543-9be7-6d0f0e04d427
 
-	measure 'Monto Financiero 2026' = SUM('visual_acumulado_financiero_2026'[Monto])
+	measure 'Monto Cumplimiento Anual 2026 Quantum' = SUM('visual_cumplimiento_anual_2026_Quantum'[Monto])
 		formatString: 0.0
 		lineageTag: 92399534-160b-4266-9097-2c6dd307eaca
 
@@ -55,24 +55,24 @@ table visual_acumulado_financiero_2026
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition visual_acumulado_financiero_2026 = calculated
+	partition visual_cumplimiento_anual_2026_Quantum = calculated
 		mode: import
 		source =
 				UNION(
 					SELECTCOLUMNS(
-						'acumulado_financiero_2026',
+						'cumplimiento_anual_2026_Quantum',
 						"Métrica Orden", 1,
 						"Métrica", "LB BC 26",
-						"Categoría Orden", SWITCH('acumulado_financiero_2026'[Categoría], "Financiero", 2, "Eccsa", 1),
-						"Categoría", IF('acumulado_financiero_2026'[Categoría] = "Financiero", "financier", 'acumulado_financiero_2026'[Categoría]),
-						"Monto", 'acumulado_financiero_2026'[LB BC 26]
+						"Categoría Orden", SWITCH('cumplimiento_anual_2026_Quantum'[Categoría], "Financiero", 2, "Eccsa", 1),
+						"Categoría", IF('cumplimiento_anual_2026_Quantum'[Categoría] = "Financiero", "financier", 'cumplimiento_anual_2026_Quantum'[Categoría]),
+						"Monto", 'cumplimiento_anual_2026_Quantum'[LB BC 26]
 					),
 					SELECTCOLUMNS(
-						'acumulado_financiero_2026',
+						'cumplimiento_anual_2026_Quantum',
 						"Métrica Orden", 2,
 						"Métrica", "FCST 26",
-						"Categoría Orden", SWITCH('acumulado_financiero_2026'[Categoría], "Financiero", 2, "Eccsa", 1),
-						"Categoría", IF('acumulado_financiero_2026'[Categoría] = "Financiero", "financier", 'acumulado_financiero_2026'[Categoría]),
-						"Monto", 'acumulado_financiero_2026'[FCST 2026]
+						"Categoría Orden", SWITCH('cumplimiento_anual_2026_Quantum'[Categoría], "Financiero", 2, "Eccsa", 1),
+						"Categoría", IF('cumplimiento_anual_2026_Quantum'[Categoría] = "Financiero", "financier", 'cumplimiento_anual_2026_Quantum'[Categoría]),
+						"Monto", 'cumplimiento_anual_2026_Quantum'[FCST 2026]
 					)
 				)

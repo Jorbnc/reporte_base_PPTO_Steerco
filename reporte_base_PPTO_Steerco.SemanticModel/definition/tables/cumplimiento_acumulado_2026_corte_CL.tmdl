@@ -1,4 +1,4 @@
-table acumulado_corte_CL
+table cumplimiento_acumulado_2026_corte_CL
 	lineageTag: 1b5d6579-6f13-438a-940b-39a218e030ef
 
 	column Categoría
@@ -31,7 +31,7 @@ table acumulado_corte_CL
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition acumulado_corte_CL = calculated
+	partition cumplimiento_acumulado_2026_corte_CL = calculated
 		mode: import
 		source =
 				VAR MesCorteConfig = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])

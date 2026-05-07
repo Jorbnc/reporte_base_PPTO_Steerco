@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "chartcortetotal",
+  "name": "chartcumplanualquantumpe",
   "position": {
-    "x": 24,
-    "y": 36,
-    "z": 1000,
+    "x": 864,
+    "y": 374,
+    "z": 1500,
     "height": 290,
     "width": 392,
-    "tabOrder": 1000
+    "tabOrder": 1500
   },
   "visual": {
     "visualType": "columnChart",
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_corte"
+                      "Entity": "visual_cumplimiento_anual_2026_Quantum_PE"
                     }
                   },
                   "Property": "Métrica"
                 }
               },
-              "queryRef": "visual_acumulado_corte.Métrica",
+              "queryRef": "visual_cumplimiento_anual_2026_Quantum_PE.Métrica",
               "nativeQueryRef": "Métrica",
               "active": true
             }
@@ -39,13 +39,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_corte"
+                      "Entity": "visual_cumplimiento_anual_2026_Quantum_PE"
                     }
                   },
                   "Property": "Categoría"
                 }
               },
-              "queryRef": "visual_acumulado_corte.Categoría",
+              "queryRef": "visual_cumplimiento_anual_2026_Quantum_PE.Categoría",
               "nativeQueryRef": "Categoría",
               "active": true
             }
@@ -58,14 +58,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "visual_acumulado_corte"
+                      "Entity": "visual_cumplimiento_anual_2026_Quantum_PE"
                     }
                   },
-                  "Property": "Monto Corte"
+                  "Property": "Monto Cumplimiento Anual 2026 Quantum PE"
                 }
               },
-              "queryRef": "visual_acumulado_corte.Monto Corte",
-              "nativeQueryRef": "Monto Corte"
+              "queryRef": "visual_cumplimiento_anual_2026_Quantum_PE.Monto Cumplimiento Anual 2026 Quantum PE",
+              "nativeQueryRef": "Monto Cumplimiento Anual 2026 Quantum PE"
             }
           ]
         }
@@ -77,7 +77,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "visual_acumulado_corte"
+                    "Entity": "visual_cumplimiento_anual_2026_Quantum_PE"
                   }
                 },
                 "Property": "Métrica"
@@ -144,7 +144,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Corte acumulado'"
+                  "Value": "'Cumplimiento anual 2026 Quantum PE'"
                 }
               }
             }

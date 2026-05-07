@@ -1,4 +1,4 @@
-table acumulado_corte
+table cumplimiento_acumulado_2026_corte
 	lineageTag: bdf2076c-ecf8-4a26-88c0-71b5b788a1fe
 
 	column Categoría
@@ -31,15 +31,15 @@ table acumulado_corte
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition acumulado_corte = calculated
+	partition cumplimiento_acumulado_2026_corte = calculated
 		mode: import
 		source =
 				VAR MesCorteConfig = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
 				VAR MesCorteGlobal = MIN(12, MAX(1, MesCorteConfig))
 				RETURN
 					SELECTCOLUMNS(
-						FILTER('acumulado_hasta_corte', 'acumulado_hasta_corte'[Mes Orden] = MesCorteGlobal),
-						"Categoría", 'acumulado_hasta_corte'[Categoría],
-						"PPTO 2026", 'acumulado_hasta_corte'[PPTO 2026],
-						"REAL 2026", 'acumulado_hasta_corte'[REAL 2026]
+						FILTER('cumplimiento_acumulado_2026_hasta_corte', 'cumplimiento_acumulado_2026_hasta_corte'[Mes Orden] = MesCorteGlobal),
+						"Categoría", 'cumplimiento_acumulado_2026_hasta_corte'[Categoría],
+						"PPTO 2026", 'cumplimiento_acumulado_2026_hasta_corte'[PPTO 2026],
+						"REAL 2026", 'cumplimiento_acumulado_2026_hasta_corte'[REAL 2026]
 					)
