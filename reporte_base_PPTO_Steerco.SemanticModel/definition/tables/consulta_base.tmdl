@@ -4,7 +4,6 @@ table consulta_base
 	measure 'PPTO 2026 Base Acum' =
 			VAR MesCorteConfig = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
 			VAR MesCorteGlobal = MIN(12, MAX(1, MesCorteConfig))
-			VAR FechaCorte = EOMONTH(DATE(2026, MesCorteGlobal, 1), 0)
 			RETURN
 				CALCULATE(
 					DIVIDE(SUM('consulta_base'[PPTO 26 Aprobado CLP]), 1000000000),
@@ -20,7 +19,7 @@ table consulta_base
 								&& CONTAINSSTRING(ProveedorNormalizado, "kyndryl")
 						RETURN
 							YEAR('consulta_base'[Mes/ Año]) = 2026
-								&& 'consulta_base'[Mes/ Año] <= FechaCorte
+								&& MONTH('consulta_base'[Mes/ Año]) <= MesCorteGlobal
 								&& TipoGastoNormalizado IN {"capex", "opex"}
 								&& (EsBanco || EsEccsa)
 					)
@@ -39,7 +38,6 @@ table consulta_base
 	measure 'REAL 2026 Base Acum' =
 			VAR MesCorteConfig = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
 			VAR MesCorteGlobal = MIN(12, MAX(1, MesCorteConfig))
-			VAR FechaCorte = EOMONTH(DATE(2026, MesCorteGlobal, 1), 0)
 			RETURN
 				CALCULATE(
 					DIVIDE(SUM('consulta_base'[2026 REAL CLP]), 1000000000),
@@ -55,7 +53,7 @@ table consulta_base
 								&& CONTAINSSTRING(ProveedorNormalizado, "kyndryl")
 						RETURN
 							YEAR('consulta_base'[Mes/ Año]) = 2026
-								&& 'consulta_base'[Mes/ Año] <= FechaCorte
+								&& MONTH('consulta_base'[Mes/ Año]) <= MesCorteGlobal
 								&& TipoGastoNormalizado IN {"capex", "opex"}
 								&& (EsBanco || EsEccsa)
 					)
@@ -296,4 +294,3 @@ table consulta_base
 	annotation PBI_NavigationStepName = Navegación
 
 	annotation PBI_ResultType = Table
-

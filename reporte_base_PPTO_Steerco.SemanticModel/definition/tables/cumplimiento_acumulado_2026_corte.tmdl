@@ -36,7 +36,6 @@ table cumplimiento_acumulado_2026_corte
 		source =
 				VAR MesCorteConfig = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
 				VAR MesCorteGlobal = MIN(12, MAX(1, MesCorteConfig))
-				VAR FechaCorte = EOMONTH(DATE(2026, MesCorteGlobal, 1), 0)
 				VAR Categorias =
 					DATATABLE(
 						"Categoría", STRING,
@@ -51,7 +50,7 @@ table cumplimiento_acumulado_2026_corte
 						FILTER(
 							'consulta_base',
 							YEAR('consulta_base'[Mes/ Año]) = 2026
-								&& 'consulta_base'[Mes/ Año] <= FechaCorte
+								&& MONTH('consulta_base'[Mes/ Año]) <= MesCorteGlobal
 						),
 						"__Categoria",
 							VAR SegmentoNormalizado = LOWER(TRIM(COALESCE('consulta_base'[Segmento ], "")))
@@ -95,4 +94,3 @@ table cumplimiento_acumulado_2026_corte
 									1000000000
 								)
 					)
-
