@@ -20,5 +20,4 @@ table parametros_corte
 					}
 				)
 
-	annotation Description = Cambia el valor de Mes Corte para mover las tres primeras tablas entre marzo (3), abril (4), etc.
-
+	annotation Description = Cambia Mes Corte para mover las tablas acumuladas y definir el último mes REAL usado en FCST 2026 de las tablas Quantum.

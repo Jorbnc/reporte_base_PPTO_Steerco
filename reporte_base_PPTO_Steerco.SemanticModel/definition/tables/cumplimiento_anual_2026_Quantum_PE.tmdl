@@ -34,6 +34,8 @@ table cumplimiento_anual_2026_Quantum_PE
 	partition cumplimiento_anual_2026_Quantum_PE = calculated
 		mode: import
 		source =
+				VAR MesCorteConfig = MAXX('parametros_corte', 'parametros_corte'[Mes Corte])
+				VAR MesRealFcst = MIN(12, MAX(1, MesCorteConfig))
 				VAR Categorias =
 					DATATABLE(
 						"Categoría", STRING,
@@ -66,7 +68,7 @@ table cumplimiento_anual_2026_Quantum_PE
 								),
 						"__FCST2026",
 							IF(
-								MONTH('consulta_base'[Mes/ Año]) <= 4,
+								MONTH('consulta_base'[Mes/ Año]) <= MesRealFcst,
 								'consulta_base'[2026 REAL CLP],
 								'consulta_base'[2026 FCST CLP]
 							)
@@ -95,4 +97,3 @@ table cumplimiento_anual_2026_Quantum_PE
 									1000000000
 								)
 					)
-
