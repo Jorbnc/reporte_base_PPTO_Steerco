@@ -64,7 +64,7 @@ table visual_cumplimiento_anual_2026_Quantum_CL
 						"Métrica Orden", 1,
 						"Métrica", "LB BC 26",
 						"Categoría Orden", SWITCH('cumplimiento_anual_2026_Quantum_CL'[Categoría], "Financiero", 2, "Eccsa", 1),
-						"Categoría", IF('cumplimiento_anual_2026_Quantum_CL'[Categoría] = "Financiero", "financier", 'cumplimiento_anual_2026_Quantum_CL'[Categoría]),
+						"Categoría", IF('cumplimiento_anual_2026_Quantum_CL'[Categoría] = "Financiero", "Financiero", 'cumplimiento_anual_2026_Quantum_CL'[Categoría]),
 						"Monto", 'cumplimiento_anual_2026_Quantum_CL'[LB BC 26]
 					),
 					SELECTCOLUMNS(
@@ -72,7 +72,8 @@ table visual_cumplimiento_anual_2026_Quantum_CL
 						"Métrica Orden", 2,
 						"Métrica", "FCST 26",
 						"Categoría Orden", SWITCH('cumplimiento_anual_2026_Quantum_CL'[Categoría], "Financiero", 2, "Eccsa", 1),
-						"Categoría", IF('cumplimiento_anual_2026_Quantum_CL'[Categoría] = "Financiero", "financier", 'cumplimiento_anual_2026_Quantum_CL'[Categoría]),
+						"Categoría", IF('cumplimiento_anual_2026_Quantum_CL'[Categoría] = "Financiero", "Financiero", 'cumplimiento_anual_2026_Quantum_CL'[Categoría]),
 						"Monto", 'cumplimiento_anual_2026_Quantum_CL'[FCST 2026]
 					)
 				)
+

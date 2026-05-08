@@ -28,8 +28,7 @@ table consulta_base
 		formatString: 0.0
 		lineageTag: 4ab693b3-ade1-43db-b2b3-f4493d8afe13
 
-	measure 'PPTO 2026 Tabla Acum' =
-			SUM('cumplimiento_acumulado_2026_corte'[PPTO 2026])
+	measure 'PPTO 2026 Tabla Acum' = SUM('cumplimiento_acumulado_2026_corte'[PPTO 2026])
 		formatString: 0.0
 		lineageTag: e826866a-8c68-4929-8e28-80b82d4630a4
 
@@ -64,8 +63,7 @@ table consulta_base
 		formatString: 0.0
 		lineageTag: ffb6a96e-389b-4ae2-b1a5-1167a8c468dc
 
-	measure 'REAL 2026 Tabla Acum' =
-			SUM('cumplimiento_acumulado_2026_corte'[REAL 2026])
+	measure 'REAL 2026 Tabla Acum' = SUM('cumplimiento_acumulado_2026_corte'[REAL 2026])
 		formatString: 0.0
 		lineageTag: 9ce317c9-f267-4c4c-847e-894203f371ca
 
@@ -298,3 +296,4 @@ table consulta_base
 	annotation PBI_NavigationStepName = Navegación
 
 	annotation PBI_ResultType = Table
+

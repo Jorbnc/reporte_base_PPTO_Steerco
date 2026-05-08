@@ -13,6 +13,8 @@ annotation PBI_QueryOrder = ["consulta_base"]
 annotation PBI_ProTooling = ["DevMode"]
 
 ref table consulta_base
+ref table DateTableTemplate_599cd7b8-0702-42df-8675-f9dd1e16ae05
+ref table LocalDateTable_73faddd3-3d2d-43a8-b2a6-e6bb10e0aca5
 ref table parametros_corte
 ref table cumplimiento_acumulado_2026_corte
 ref table cumplimiento_acumulado_2026_corte_CL
@@ -26,7 +28,6 @@ ref table visual_cumplimiento_acumulado_2026_corte_PE
 ref table visual_cumplimiento_anual_2026_Quantum
 ref table visual_cumplimiento_anual_2026_Quantum_CL
 ref table visual_cumplimiento_anual_2026_Quantum_PE
-ref table DateTableTemplate_599cd7b8-0702-42df-8675-f9dd1e16ae05
-ref table LocalDateTable_73faddd3-3d2d-43a8-b2a6-e6bb10e0aca5
 
 ref cultureInfo es-ES
+
